@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="dentalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d9488"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <filter id="toothShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="1.5" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  <!-- Background squircle -->
+  <rect width="64" height="64" rx="16" fill="url(#dentalGrad)"/>
+  <!-- Premium White Tooth with anatomical crown and twin roots -->
+  <path d="M32 11 C21 11 14 17 14 26 C14 33 18 39 20 46 C21.8 52 24.5 54 28 54 C31 54 31.6 48 32 44.5 C32.4 48 33 54 36 54 C39.5 54 42.2 52 44 46 C46 39 50 33 50 26 C50 17 43 11 32 11 Z" fill="#ffffff" filter="url(#toothShadow)"/>
+  <!-- Gentle Smile line -->
+  <path d="M24 29 C28 34 36 34 40 29" fill="none" stroke="#0d9488" stroke-width="3" stroke-linecap="round"/>
+  <!-- Bright smile sparkle star -->
+  <path d="M47 13 L48.3 16.5 L52 18 L48.3 19.5 L47 23 L45.7 19.5 L42 18 L45.7 16.5 Z" fill="#fbbf24"/>
+</svg>
