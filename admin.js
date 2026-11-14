@@ -380,7 +380,7 @@ const API_URL = (typeof window !== 'undefined' && window.API_URL && window.API_U
     for (let i = 0; i < 5; i++) {
       const tr = document.createElement('tr');
       tr.className = 'skeleton-row';
-      for (let j = 0; j < 8; j++) {
+      for (let j = 0; j < 9; j++) {
         const td = document.createElement('td');
         const box = document.createElement('div');
         box.className = 'skeleton-box';
@@ -397,7 +397,7 @@ const API_URL = (typeof window !== 'undefined' && window.API_URL && window.API_U
     tableBody.innerHTML = '';
     const tr = document.createElement('tr');
     const td = document.createElement('td');
-    td.colSpan = 8;
+    td.colSpan = 9;
     td.className = 'table-empty-cell';
 
     const wrap = document.createElement('div');
@@ -423,7 +423,7 @@ const API_URL = (typeof window !== 'undefined' && window.API_URL && window.API_U
     tableBody.innerHTML = '';
     const tr = document.createElement('tr');
     const td = document.createElement('td');
-    td.colSpan = 8;
+    td.colSpan = 9;
     td.className = 'table-error-cell';
 
     const wrap = document.createElement('div');
@@ -505,22 +505,27 @@ const API_URL = (typeof window !== 'undefined' && window.API_URL && window.API_U
       tdTreatment.textContent = booking.treatment || '-';
       tr.appendChild(tdTreatment);
 
-      // 5. Branch
+      // 5. Doctor
+      const tdDoctor = document.createElement('td');
+      tdDoctor.textContent = booking.doctor || 'Any available doctor';
+      tr.appendChild(tdDoctor);
+
+      // 6. Branch
       const tdBranch = document.createElement('td');
       tdBranch.textContent = booking.branch || '-';
       tr.appendChild(tdBranch);
 
-      // 6. Date
+      // 7. Date
       const tdDate = document.createElement('td');
       tdDate.textContent = booking.date || '-';
       tr.appendChild(tdDate);
 
-      // 7. Slot
+      // 8. Slot
       const tdSlot = document.createElement('td');
       tdSlot.textContent = booking.slot || '-';
       tr.appendChild(tdSlot);
 
-      // 8. Status Dropdown (Optimistic update)
+      // 9. Status Dropdown (Optimistic update)
       const tdStatus = document.createElement('td');
       const statusSelect = document.createElement('select');
       const currentStatus = booking.status || 'Pending';
@@ -595,12 +600,13 @@ const API_URL = (typeof window !== 'undefined' && window.API_URL && window.API_U
       return;
     }
 
-    const headers = ['Booking ID', 'Patient Name', 'Phone', 'Treatment', 'Branch', 'Date', 'Slot', 'Status', 'Message'];
+    const headers = ['Booking ID', 'Patient Name', 'Phone', 'Treatment', 'Doctor', 'Branch', 'Date', 'Slot', 'Status', 'Message'];
     const rows = filtered.map(b => [
       b.bookingId || b.id || '',
       b.name || '',
       b.phone || '',
       b.treatment || '',
+      b.doctor || 'Any available doctor',
       b.branch || '',
       b.date || '',
       b.slot || '',

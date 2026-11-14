@@ -11,7 +11,7 @@
         content="Book a free consultation at Gupta's Dental, Kolkata's premier clinic for dental implants, Invisalign clear aligners, painless root canals, and teeth whitening. Branches in Phoolbagan / Kankurgachi and Seven Tanks / South Dum Dum.">
     <meta name="keywords"
         content="Guptas Dental, Gupta's Dental Kolkata, dental clinic Phoolbagan, dental clinic South Dum Dum, dentist Kankurgachi, dentist Seven Tanks, dental implants Kolkata, root canal Kolkata">
-    <link rel="canonical" href="https://guptasdental.in/">
+    <link rel="canonical" href="https://guptadental.vercel.app/">
 
     <!-- Favicon & App Icons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -24,7 +24,10 @@
     <meta property="og:title" content="Gupta's Dental | Your Smile, Our Priority">
     <meta property="og:description"
         content="Kolkata's trusted multispeciality dental clinic in Phoolbagan and South Dum Dum. 30+ specialists, painless procedures, 4.8★ Google rating. Book your free consultation today.">
-    <meta property="og:image" content="https://guptasdental.in/images/og-preview.jpg">
+    <meta property="og:url" content="https://guptadental.vercel.app/">
+    <meta property="og:image" content="https://guptadental.vercel.app/images/og-preview.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://guptadental.vercel.app/images/og-preview.jpg">
 
     <!-- Google Fonts Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,7 +44,8 @@
     "@context": "https://schema.org",
     "@type": "Dentist",
     "name": "Gupta's Dental",
-    "image": "https://guptasdental.in/images/clinic.jpg",
+    "url": "https://guptadental.vercel.app/",
+    "image": "https://guptadental.vercel.app/images/clinic.jpg",
     "telephone": "+91-81010-14751",
     "email": "prasaha018@gmail.com",
     "priceRange": "₹₹",
@@ -204,19 +208,35 @@
 
                         <!-- Main Headline -->
                         <h1 id="hero-title" class="hero-headline">
-                            The dental clinic in Kolkata that tells you the cost before it starts
+                            Every tooth matters,
+                       W     every smile counts
                         </h1>
 
                         <!-- One-Line Subheading -->
                         <!-- PLACEHOLDER: Hero Subheading Text -->
                         <p class="hero-subhead">
-                            Two clinics in North Kolkata, both open till 9 PM. Gum and implant work led by an MDS
-                            specialist. You see the full treatment plan, priced, before anything begins.
+                            Transparent pricing, zero surprises. See your full treatment plan and fixed cost before
+                            anything begins. Open 7 days till 9 PM.
                         </p>
 
-                        <!-- 3 Trust Bullets -->
-                        <!-- PLACEHOLDER: 3 Trust Bullets -->
-                        <ul class="hero-bullets">
+                        <!-- Trust Highlights Bar (Inline on Mobile, Bullets on Desktop) -->
+                        <div class="hero-trust-chips" aria-label="Key Clinic Features">
+                            <span class="trust-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> 100% Painless</span>
+                            <span class="trust-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> MDS Specialists</span>
+                            <span class="trust-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Zero Wait Time</span>
+                        </div>
+
+                        <!-- 3 Trust Bullets (Desktop Only) -->
+                        <ul class="hero-bullets desktop-only">
                             <li class="hero-bullet-item">
                                 <span class="bullet-icon" aria-hidden="true">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -224,7 +244,7 @@
                                         <polyline points="20 6 9 17 4 12"></polyline>
                                     </svg>
                                 </span>
-                                <span><strong>100% Painless Treatment</strong> with computer-guided anesthesia</span>
+                                <span><strong>100% Painless Care</strong> — Computer-guided anesthesia</span>
                             </li>
                             <li class="hero-bullet-item">
                                 <span class="bullet-icon" aria-hidden="true">
@@ -233,8 +253,7 @@
                                         <polyline points="20 6 9 17 4 12"></polyline>
                                     </svg>
                                 </span>
-                                <span><strong>Experienced Specialists (MDS)</strong> with 15+ years clinical
-                                    expertise</span>
+                                <span><strong>Senior MDS Doctors</strong> — 15+ years clinical expertise</span>
                             </li>
                             <li class="hero-bullet-item">
                                 <span class="bullet-icon" aria-hidden="true">
@@ -243,12 +262,12 @@
                                         <polyline points="20 6 9 17 4 12"></polyline>
                                     </svg>
                                 </span>
-                                <span><strong>Same-Day Appointments</strong> & zero waiting time guarantee</span>
+                                <span><strong>Same-Day Visits</strong> — Guaranteed zero waiting time</span>
                             </li>
                         </ul>
 
-                        <!-- Quick Direct Call Prompt -->
-                        <div class="hero-quick-call">
+                        <!-- Quick Direct Call Prompt (Desktop Only) -->
+                        <div class="hero-quick-call desktop-only">
                             <span>Prefer to book via phone?</span>
                             <a href="tel:+918101014751" class="btn-phone" data-brand-tel>
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -267,20 +286,26 @@
                     <div class="booking-card" id="booking-card" aria-labelledby="booking-form-heading">
 
                         <div class="booking-header">
-                            <span class="booking-badge">Limited Time Offer</span>
-                            <h2 id="booking-form-heading" class="booking-title">Book Free Consultation</h2>
-                            <p class="booking-desc">Includes 3D Digital Scan + Evaluation (Worth ₹1,500)</p>
+                            <div class="booking-offer-pill">
+                                <span class="badge-icon">🎁</span>
+                                <span><strong>Free Consultation:</strong> Includes 3D Scan + Evaluation (Worth
+                                    ₹1,500)</span>
+                            </div>
+                            <h2 id="booking-form-heading" class="visually-hidden">Book Free Consultation</h2>
 
                             <!-- Interactive Branch Segment Selector (Mobile-First Touch) -->
-                            <div class="branch-segment" id="branch-segment" role="tablist" aria-label="Select Clinic Branch">
-                                <button type="button" class="branch-pill is-active" data-branch="Phoolbagan / Kankurgachi" role="tab" aria-selected="true">
+                            <div class="branch-segment" id="branch-segment" role="tablist"
+                                aria-label="Select Clinic Branch">
+                                <button type="button" class="branch-pill is-active"
+                                    data-branch="Phoolbagan / Kankurgachi" role="tab" aria-selected="true">
                                     <span class="branch-pill-dot"></span>
                                     <span class="branch-pill-body">
                                         <span class="branch-pill-title">Phoolbagan</span>
                                         <span class="branch-pill-sub">CIT Rd • Open 7 Days</span>
                                     </span>
                                 </button>
-                                <button type="button" class="branch-pill" data-branch="Seven Tanks / South Dum Dum" role="tab" aria-selected="false">
+                                <button type="button" class="branch-pill" data-branch="Seven Tanks / South Dum Dum"
+                                    role="tab" aria-selected="false">
                                     <span class="branch-pill-dot"></span>
                                     <span class="branch-pill-body">
                                         <span class="branch-pill-title">Seven Tanks</span>
@@ -325,31 +350,43 @@
                                     </div>
                                 </div>
 
-                                <!-- 3 & 4. Treatment & Branch 2-Column Grid -->
+                                <!-- Row 2: Treatment & Preferred Doctor (2-Column Grid!) -->
                                 <div class="form-grid-2col">
                                     <!-- Treatment Selection -->
                                     <div class="form-group">
                                         <label for="form-treatment" class="form-label">
-                                            Treatment <span class="req" aria-hidden="true">*</span>
+                                            Treatment / Speciality <span class="req" aria-hidden="true">*</span>
                                         </label>
                                         <select id="form-treatment" class="form-control" required>
-                                            <option value="">Select Treatment</option>
+                                            <option value="">Select Treatment / Speciality</option>
                                             <!-- Populated via script.js from CLINIC_CONFIG -->
                                         </select>
                                         <div class="form-error-msg" id="error-treatment" role="alert"></div>
                                     </div>
 
-                                    <!-- Clinic Branch (Synchronized with Branch Segment) -->
-                                    <div class="form-group">
-                                        <label for="form-branch" class="form-label">
-                                            Clinic Branch <span class="req" aria-hidden="true">*</span>
+                                    <!-- Preferred Doctor (Optional, Dynamically Filtered) -->
+                                    <div class="form-group" id="group-form-doctor">
+                                        <label for="form-doctor" class="form-label">
+                                            Doctor <span class="opt-label">(Optional)</span>
                                         </label>
-                                        <select id="form-branch" class="form-control" required>
-                                            <option value="">Select Branch</option>
-                                            <!-- Populated via script.js from CLINIC_CONFIG -->
+                                        <select id="form-doctor" class="form-control">
+                                            <option value="">Any available doctor</option>
+                                            <!-- Populated via script.js -->
                                         </select>
-                                        <div class="form-error-msg" id="error-branch" role="alert"></div>
+                                        <div class="form-hint-msg" id="doctor-hint-msg" style="display: none;">
+                                            Assigned by clinic
+                                        </div>
                                     </div>
+                                </div>
+
+                                <!-- Hidden Clinic Branch Dropdown (Synchronized with Branch Segment) -->
+                                <div class="form-group" style="display: none;" aria-hidden="true">
+                                    <label for="form-branch">Clinic Branch</label>
+                                    <select id="form-branch" class="form-control" required>
+                                        <option value="">Select Branch</option>
+                                        <!-- Populated via script.js from CLINIC_CONFIG -->
+                                    </select>
+                                    <div class="form-error-msg" id="error-branch" role="alert"></div>
                                 </div>
 
                                 <!-- Preferred Date (Horizontal Quick Date Strip + Picker) -->
@@ -359,7 +396,8 @@
                                             Preferred Date <span class="req" aria-hidden="true">*</span>
                                         </label>
                                         <label for="form-date" class="date-picker-trigger" title="Select custom date">
-                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2.2">
                                                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                                                 <line x1="16" y1="2" x2="16" y2="6"></line>
                                                 <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -369,7 +407,8 @@
                                         </label>
                                     </div>
                                     <!-- Dynamic 7-Day Mobile Quick Date Strip -->
-                                    <div class="quick-dates-scroll" id="quick-dates-strip" role="radiogroup" aria-label="Select Date">
+                                    <div class="quick-dates-scroll" id="quick-dates-strip" role="radiogroup"
+                                        aria-label="Select Date">
                                         <!-- Built dynamically in script.js -->
                                     </div>
                                     <input type="date" id="form-date" class="form-control date-input-hidden" required>
@@ -390,7 +429,8 @@
                                         <!-- Synchronized for API submission -->
                                     </select>
                                     <!-- Dynamic Interactive Slot Chips Grid -->
-                                    <div class="slot-chips-grid" id="slot-chips-grid" role="radiogroup" aria-label="Select Time Slot">
+                                    <div class="slot-chips-grid" id="slot-chips-grid" role="radiogroup"
+                                        aria-label="Select Time Slot">
                                         <!-- Populated dynamically via script.js -->
                                     </div>
                                     <div class="form-error-msg" id="error-slot" role="alert"></div>
@@ -401,10 +441,18 @@
                                     <div class="quick-concerns-box">
                                         <span class="quick-concerns-label">Quick select concern:</span>
                                         <div class="quick-concerns-list">
-                                            <button type="button" class="concern-pill" data-concern-treatment="Microscopic Root Canal (RCT)" data-concern-text="Severe toothache / sensitivity">⚡ Tooth Pain</button>
-                                            <button type="button" class="concern-pill" data-concern-treatment="Dental Implants" data-concern-text="Missing tooth replacement">🦷 Missing Tooth</button>
-                                            <button type="button" class="concern-pill" data-concern-treatment="Invisalign & Clear Braces" data-concern-text="Looking for clear braces">✨ Braces</button>
-                                            <button type="button" class="concern-pill" data-concern-treatment="Laser Teeth Whitening" data-concern-text="Yellow stains / whitening">💎 Whitening</button>
+                                            <button type="button" class="concern-pill"
+                                                data-concern-treatment="Microscopic Root Canal (RCT)"
+                                                data-concern-text="Severe toothache / sensitivity">⚡ Tooth Pain</button>
+                                            <button type="button" class="concern-pill"
+                                                data-concern-treatment="Dental Implants"
+                                                data-concern-text="Missing tooth replacement">🦷 Missing Tooth</button>
+                                            <button type="button" class="concern-pill"
+                                                data-concern-treatment="Invisalign & Clear Braces"
+                                                data-concern-text="Looking for clear braces">✨ Braces</button>
+                                            <button type="button" class="concern-pill"
+                                                data-concern-treatment="Laser Teeth Whitening"
+                                                data-concern-text="Yellow stains / whitening">💎 Whitening</button>
                                         </div>
                                     </div>
                                     <input type="text" id="form-message" class="form-control"
@@ -412,7 +460,8 @@
                                 </div>
 
                                 <div class="form-error-msg" id="error-form" role="alert"
-                                    style="margin-bottom: var(--space-2); text-align: center; font-size: 0.75rem;"></div>
+                                    style="margin-bottom: var(--space-2); text-align: center; font-size: 0.75rem;">
+                                </div>
 
                                 <!-- Submit Button -->
                                 <button type="submit" id="form-submit-btn" class="btn btn-cta btn-block">
@@ -466,6 +515,10 @@
                                     <span class="summary-value" id="summary-treatment">-</span>
                                 </div>
                                 <div class="summary-row">
+                                    <span class="summary-label">Doctor:</span>
+                                    <span class="summary-value" id="summary-doctor">-</span>
+                                </div>
+                                <div class="summary-row">
                                     <span class="summary-label">Branch:</span>
                                     <span class="summary-value" id="summary-branch">-</span>
                                 </div>
@@ -493,6 +546,73 @@
 
                     </div>
 
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================
+         SECTION 2b: Hero Search Bar ("Find a Doctor" widget)
+         ======================================================================== -->
+        <section class="hero-search-section" id="hero-search-bar" aria-label="Find a Doctor or Speciality">
+            <div class="container">
+                <div class="hero-search-card">
+                    <div class="hero-search-header">
+                        <div class="hero-search-title-wrap">
+                            <span class="hero-search-pill">Find a Doctor</span>
+                            <h2 class="hero-search-title">Search Specialists &amp; Treatments</h2>
+                        </div>
+                        <p class="hero-search-subtitle">Consult with leading MDS dental specialists across Phoolbagan
+                            &amp; Dum Dum</p>
+                    </div>
+                    <form class="hero-search-form" id="hero-search-form" onsubmit="return false;">
+                        <div class="hero-search-fields">
+                            <div class="hero-search-field">
+                                <label for="search-speciality" class="hero-search-label">Select Speciality</label>
+                                <div class="select-wrap">
+                                    <select id="search-speciality" class="form-control hero-search-select"
+                                        aria-label="Select Speciality">
+                                        <option value="">All Specialities</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="hero-search-field">
+                                <label for="search-doctor" class="hero-search-label">Select Doctor</label>
+                                <div class="select-wrap">
+                                    <select id="search-doctor" class="form-control hero-search-select"
+                                        aria-label="Select Doctor">
+                                        <option value="">All Doctors</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="hero-search-actions">
+                                <button type="button" id="btn-hero-search" class="btn btn-primary hero-search-btn">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                    </svg>
+                                    <span>Search</span>
+                                </button>
+                                <button type="button" id="btn-hero-clear" class="btn btn-outline hero-clear-btn"
+                                    aria-label="Clear search">
+                                    <span>Clear</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Search Results Panel (Animated Expand, aria-live) -->
+                    <div class="search-results-panel" id="search-results-panel" aria-live="polite"
+                        style="display: none;">
+                        <div class="search-results-header">
+                            <h3 class="search-results-title" id="search-results-title">Available Doctors</h3>
+                            <span class="search-results-count" id="search-results-count">0 specialists found</span>
+                        </div>
+                        <div class="search-results-grid" id="search-results-grid">
+                            <!-- Populated dynamically via script.js -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -545,6 +665,119 @@
         </section>
 
         <!-- ========================================================================
+         SECTION 3a: About Gupta's Dental ("More than dentistry, it's care")
+         ======================================================================== -->
+        <section class="section about-section" id="about" aria-labelledby="about-title">
+            <div class="container">
+                <div class="about-grid">
+                    <!-- Left: Image Card with Floating Badge -->
+                    <div class="about-visual animate-on-scroll">
+                        <div class="about-image-card">
+                            <img src="images/Image1-web.jpg"
+                                alt="Gupta's Dental modern sterile clinical operatory in Kolkata" class="about-main-img"
+                                loading="lazy" width="560" height="700">
+                            <div class="about-floating-badge">
+                                <span class="badge-star" aria-hidden="true">★</span>
+                                <div class="badge-text">
+                                    <strong>15+ Years of Care</strong>
+                                    <span>Over 30,000 Happy Smiles</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Content, 2x2 Details Grid, CTAs -->
+                    <div class="about-content animate-on-scroll">
+                        <div class="section-header about-header">
+                            <span class="section-pill">About Gupta's Dental</span>
+                            <h2 id="about-title" class="section-title">More than dentistry, it's genuine care</h2>
+                        </div>
+                        <p class="about-lead">
+                            Founded on uncompromising clinical transparency, Gupta's Dental brings hospital-grade
+                            precision to North Kolkata with digital 3D workflows and completely pain-free procedures.
+                        </p>
+                        <p class="about-desc">
+                            Our MDS-qualified specialists explain every diagnosis clearly so you understand your
+                            treatment choices, expected timelines, and exact costs before any treatment begins.
+                        </p>
+
+                        <!-- 2x2 Key Details Grid -->
+                        <div class="about-details-grid">
+                            <div class="about-detail-item">
+                                <div class="detail-icon" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                </div>
+                                <div class="detail-info">
+                                    <h3 class="detail-title">2 North Kolkata Clinics</h3>
+                                    <p class="detail-sub">Phoolbagan &amp; Dum Dum</p>
+                                </div>
+                            </div>
+
+                            <div class="about-detail-item">
+                                <div class="detail-icon" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="detail-info">
+                                    <h3 class="detail-title">Open Till 9 PM</h3>
+                                    <p class="detail-sub">Flexible 7-day appointments</p>
+                                </div>
+                            </div>
+
+                            <div class="about-detail-item">
+                                <div class="detail-icon" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
+                                    </svg>
+                                </div>
+                                <div class="detail-info">
+                                    <h3 class="detail-title">MDS Specialist Team</h3>
+                                    <p class="detail-sub">Premier institute clinicians</p>
+                                </div>
+                            </div>
+
+                            <div class="about-detail-item">
+                                <div class="detail-icon" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    </svg>
+                                </div>
+                                <div class="detail-info">
+                                    <h3 class="detail-title">Hospital-Grade Sterilisation</h3>
+                                    <p class="detail-sub">6-stage Class-B autoclaving</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="about-actions">
+                            <a href="#booking-card" class="btn btn-cta" data-scroll-to-form>Book Free Consultation</a>
+                            <a href="tel:+918101014751" class="btn btn-outline" data-brand-tel>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                    </path>
+                                </svg>
+                                <span>Call Now</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================
          SECTION 3b: Interactive Dental Symptom & Guidance Banner (Mobile-First)
          ======================================================================== -->
         <section class="section symptom-section" id="symptoms-guide" aria-label="Quick Dental Symptom Finder">
@@ -553,11 +786,13 @@
                     <div class="symptom-header">
                         <span class="section-pill">Need Quick Guidance?</span>
                         <h2 class="symptom-title">What brings you to Gupta's Dental today?</h2>
-                        <p class="symptom-desc">Tap your symptom below to see recommended care, doctor specialty, and transparent estimate.</p>
+                        <p class="symptom-desc">Tap your symptom below to see recommended care, doctor specialty, and
+                            transparent estimate.</p>
                     </div>
 
                     <div class="symptom-grid">
-                        <div class="symptom-tile" data-symptom-treatment="Microscopic Root Canal (RCT)" role="button" tabindex="0">
+                        <div class="symptom-tile" data-symptom-treatment="Microscopic Root Canal (RCT)" role="button"
+                            tabindex="0">
                             <div class="symptom-icon symptom-icon-red">⚡</div>
                             <div class="symptom-content">
                                 <div class="symptom-tile-title">Severe Pain or Sensitivity</div>
@@ -577,7 +812,8 @@
                             <span class="symptom-arrow" aria-hidden="true">→</span>
                         </div>
 
-                        <div class="symptom-tile" data-symptom-treatment="Invisalign & Clear Braces" role="button" tabindex="0">
+                        <div class="symptom-tile" data-symptom-treatment="Invisalign & Clear Braces" role="button"
+                            tabindex="0">
                             <div class="symptom-icon symptom-icon-purple">✨</div>
                             <div class="symptom-content">
                                 <div class="symptom-tile-title">Crooked or Gapped Teeth</div>
@@ -587,7 +823,8 @@
                             <span class="symptom-arrow" aria-hidden="true">→</span>
                         </div>
 
-                        <div class="symptom-tile" data-symptom-treatment="Laser Teeth Whitening" role="button" tabindex="0">
+                        <div class="symptom-tile" data-symptom-treatment="Laser Teeth Whitening" role="button"
+                            tabindex="0">
                             <div class="symptom-icon symptom-icon-amber">💎</div>
                             <div class="symptom-content">
                                 <div class="symptom-tile-title">Yellow or Stained Teeth</div>
@@ -617,30 +854,39 @@
                 </div>
 
                 <!-- Category Filter Bar (Touch-Friendly Horizontal Scroll) -->
-                <div class="treatment-filter-bar animate-on-scroll" role="tablist" aria-label="Filter Treatments by Category">
-                    <button type="button" class="treatment-filter-btn is-active" data-filter="all" role="tab" aria-selected="true">
-                        <span>All Treatments (6)</span>
+                <div class="treatment-filter-bar animate-on-scroll" role="tablist"
+                    aria-label="Filter Treatments by Category">
+                    <button type="button" class="treatment-filter-btn is-active" data-filter="all" role="tab"
+                        aria-selected="true">
+                        <span>All Treatments (15)</span>
                     </button>
-                    <button type="button" class="treatment-filter-btn" data-filter="implants" role="tab" aria-selected="false">
-                        <span>🦷 Implants</span>
+                    <button type="button" class="treatment-filter-btn" data-filter="Restorative & Implants" role="tab"
+                        aria-selected="false">
+                        <span>🦷 Restorative &amp; Implants (2)</span>
                     </button>
-                    <button type="button" class="treatment-filter-btn" data-filter="pain-relief" role="tab" aria-selected="false">
-                        <span>🔬 Pain Relief (RCT)</span>
+                    <button type="button" class="treatment-filter-btn" data-filter="Pain Relief & Gums" role="tab"
+                        aria-selected="false">
+                        <span>🔬 Pain Relief &amp; Gums (4)</span>
                     </button>
-                    <button type="button" class="treatment-filter-btn" data-filter="cosmetic" role="tab" aria-selected="false">
-                        <span>✨ Aligners &amp; Smile</span>
+                    <button type="button" class="treatment-filter-btn" data-filter="Aligners & Cosmetic" role="tab"
+                        aria-selected="false">
+                        <span>✨ Aligners &amp; Cosmetic (4)</span>
                     </button>
-                    <button type="button" class="treatment-filter-btn" data-filter="kids" role="tab" aria-selected="false">
-                        <span>👶 Pediatric</span>
+                    <button type="button" class="treatment-filter-btn" data-filter="Family & Preventive" role="tab"
+                        aria-selected="false">
+                        <span>👶 Family &amp; Preventive (3)</span>
+                    </button>
+                    <button type="button" class="treatment-filter-btn" data-filter="Diagnostics" role="tab"
+                        aria-selected="false">
+                        <span>🩺 Diagnostics (2)</span>
                     </button>
                 </div>
 
                 <div class="treatments-grid">
-
-                    <!-- Treatment 1: Implants -->
-                    <article class="treatment-card animate-on-scroll" data-category="implants">
+                    <!-- Initial specialities rendered for instant display (dynamically hydrated & filtered via script.js) -->
+                    <article class="treatment-card" data-category="Restorative &amp; Implants" data-id="implants"
+                        data-index="0">
                         <div class="treatment-icon-wrap" aria-hidden="true">
-                            <!-- Dental Implant Screw SVG Icon -->
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M7 3h10M7 7h10M8 11h8M9 15h6M10 19h4M12 21v-2"></path>
@@ -648,47 +894,35 @@
                             </svg>
                         </div>
                         <h3 class="treatment-name">Dental Implants</h3>
-                        <!-- PLACEHOLDER: Treatment 1 Description -->
-                        <p class="treatment-desc">
-                            Permanent titanium and zirconia tooth replacements with computer-guided placement. Restore
-                            natural chewing power with a lifetime warranty.
-                        </p>
+                        <p class="treatment-desc">Permanent titanium and zirconia tooth replacements with
+                            computer-guided placement. Lifetime warranty on Swiss and German implants.</p>
                         <div class="treatment-card-footer">
                             <span class="treatment-tag">Lifetime Warranty</span>
-                            <button type="button" class="btn btn-outline" data-book-treatment="implants">
-                                Book Now →
-                            </button>
+                            <button type="button" class="btn btn-outline" data-book-treatment="implants">Book Now
+                                →</button>
                         </div>
                     </article>
-
-                    <!-- Treatment 2: Invisalign & Braces -->
-                    <article class="treatment-card animate-on-scroll" data-category="cosmetic">
+                    <article class="treatment-card" data-category="Aligners &amp; Cosmetic" data-id="invisalign"
+                        data-index="1">
                         <div class="treatment-icon-wrap" aria-hidden="true">
-                            <!-- Clear Aligners Arch SVG Icon -->
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M4 14c2-4 6-6 8-6s6 2 8 6"></path>
                                 <path d="M7 11v3M10 9v5M14 9v5M17 11v3"></path>
                             </svg>
                         </div>
-                        <h3 class="treatment-name">Invisalign &amp; Braces</h3>
-                        <!-- PLACEHOLDER: Treatment 2 Description -->
-                        <p class="treatment-desc">
-                            Virtually invisible clear aligners for teeth straightening without unsightly metal brackets
-                            or dietary restrictions.
-                        </p>
+                        <h3 class="treatment-name">Invisalign &amp; Clear Braces</h3>
+                        <p class="treatment-desc">Nearly invisible aligners tailored with 3D digital impressions.
+                            Straighten teeth discreetly without food restrictions or metal wires.</p>
                         <div class="treatment-card-footer">
                             <span class="treatment-tag">US FDA Approved</span>
-                            <button type="button" class="btn btn-outline" data-book-treatment="invisalign">
-                                Book Now →
-                            </button>
+                            <button type="button" class="btn btn-outline" data-book-treatment="invisalign">Book Now
+                                →</button>
                         </div>
                     </article>
-
-                    <!-- Treatment 3: Microscopic Root Canal -->
-                    <article class="treatment-card animate-on-scroll" data-category="pain-relief">
+                    <article class="treatment-card" data-category="Pain Relief &amp; Gums" data-id="root-canal"
+                        data-index="2">
                         <div class="treatment-icon-wrap" aria-hidden="true">
-                            <!-- Tooth Root SVG Icon -->
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path
@@ -697,24 +931,18 @@
                                 <path d="M12 7v6"></path>
                             </svg>
                         </div>
-                        <h3 class="treatment-name">Root Canal Treatment</h3>
-                        <!-- PLACEHOLDER: Treatment 3 Description -->
-                        <p class="treatment-desc">
-                            Single-sitting painless root canal under Zeiss dental operating microscope. Save your
-                            infected natural tooth in under 45 minutes.
-                        </p>
+                        <h3 class="treatment-name">Microscopic Root Canal (RCT)</h3>
+                        <p class="treatment-desc">High-precision endodontic treatment under surgical microscopes. 98%
+                            completed in a single painless sitting with laser disinfection.</p>
                         <div class="treatment-card-footer">
                             <span class="treatment-tag">Single Sitting</span>
-                            <button type="button" class="btn btn-outline" data-book-treatment="root-canal">
-                                Book Now →
-                            </button>
+                            <button type="button" class="btn btn-outline" data-book-treatment="root-canal">Book Now
+                                →</button>
                         </div>
                     </article>
-
-                    <!-- Treatment 4: Teeth Whitening -->
-                    <article class="treatment-card animate-on-scroll" data-category="cosmetic">
+                    <article class="treatment-card" data-category="Aligners &amp; Cosmetic" data-id="whitening"
+                        data-index="3">
                         <div class="treatment-icon-wrap" aria-hidden="true">
-                            <!-- Sparkle / Laser Whitening SVG Icon -->
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path
@@ -723,23 +951,17 @@
                             </svg>
                         </div>
                         <h3 class="treatment-name">Laser Teeth Whitening</h3>
-                        <!-- PLACEHOLDER: Treatment 4 Description -->
-                        <p class="treatment-desc">
-                            Advanced German laser whitening delivering up to 8 shades brighter teeth in a single
-                            30-minute session. Completely enamel safe.
-                        </p>
+                        <p class="treatment-desc">Get up to 8 shades whiter teeth in a single 45-minute clinic session
+                            using enamel-safe cold blue LED laser activation.</p>
                         <div class="treatment-card-footer">
                             <span class="treatment-tag">30-Min Fast Track</span>
-                            <button type="button" class="btn btn-outline" data-book-treatment="whitening">
-                                Book Now →
-                            </button>
+                            <button type="button" class="btn btn-outline" data-book-treatment="whitening">Book Now
+                                →</button>
                         </div>
                     </article>
-
-                    <!-- Treatment 5: Smile Designing & Veneers -->
-                    <article class="treatment-card animate-on-scroll" data-category="cosmetic">
+                    <article class="treatment-card" data-category="Aligners &amp; Cosmetic" data-id="smile-design"
+                        data-index="4">
                         <div class="treatment-icon-wrap" aria-hidden="true">
-                            <!-- Smile Aesthetic SVG Icon -->
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="10"></circle>
@@ -748,24 +970,18 @@
                                 <line x1="15" y1="9" x2="15.01" y2="9"></line>
                             </svg>
                         </div>
-                        <h3 class="treatment-name">Smile Designing</h3>
-                        <!-- PLACEHOLDER: Treatment 5 Description -->
-                        <p class="treatment-desc">
-                            Custom ultra-thin porcelain veneers, composite bonding, and gum recontouring for a
-                            picture-perfect celebrity smile transformation.
-                        </p>
+                        <h3 class="treatment-name">Smile Designing &amp; Veneers</h3>
+                        <p class="treatment-desc">Custom handcrafted porcelain and composite veneers designed via 2D/3D
+                            digital facial mapping for an aesthetic transformation.</p>
                         <div class="treatment-card-footer">
                             <span class="treatment-tag">Digital Mockup</span>
-                            <button type="button" class="btn btn-outline" data-book-treatment="smile-design">
-                                Book Now →
-                            </button>
+                            <button type="button" class="btn btn-outline" data-book-treatment="smile-design">Book Now
+                                →</button>
                         </div>
                     </article>
-
-                    <!-- Treatment 6: Paediatric Dentistry -->
-                    <article class="treatment-card animate-on-scroll" data-category="kids">
+                    <article class="treatment-card" data-category="Family &amp; Preventive" data-id="pediatric"
+                        data-index="5">
                         <div class="treatment-icon-wrap" aria-hidden="true">
-                            <!-- Friendly Shield Heart SVG Icon -->
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path
@@ -774,19 +990,25 @@
                             </svg>
                         </div>
                         <h3 class="treatment-name">Paediatric Dentistry</h3>
-                        <!-- PLACEHOLDER: Treatment 6 Description -->
-                        <p class="treatment-desc">
-                            Gentle, fear-free dental visits for children. Cavity prevention, painless fillings, and
-                            habit-breaking appliances in a kid-friendly setting.
-                        </p>
+                        <p class="treatment-desc">Gentle, fear-free dental visits for toddlers and teens. Fluoride
+                            treatments, cavity protection, space maintainers, and painless sealants.</p>
                         <div class="treatment-card-footer">
                             <span class="treatment-tag">Fear-Free Care</span>
-                            <button type="button" class="btn btn-outline" data-book-treatment="pediatric">
-                                Book Now →
-                            </button>
+                            <button type="button" class="btn btn-outline" data-book-treatment="pediatric">Book Now
+                                →</button>
                         </div>
                     </article>
+                </div>
 
+                <div class="treatments-expand-wrap">
+                    <button type="button" id="btn-toggle-specialities" class="btn btn-outline" aria-expanded="false">
+                        <span>View all 15 specialities</span>
+                        <svg class="toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
                 </div>
 
             </div>
@@ -1021,8 +1243,10 @@
 
                 <!-- Instant 1-Tap Compare Button for Mobile -->
                 <div class="ba-toggle-wrap">
-                    <button type="button" class="btn btn-outline btn-sm ba-instant-toggle" id="ba-instant-toggle" aria-label="Tap to toggle before and after view">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <button type="button" class="btn btn-outline btn-sm ba-instant-toggle" id="ba-instant-toggle"
+                        aria-label="Tap to toggle before and after view">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2">
                             <polyline points="15 18 9 12 15 6"></polyline>
                             <polyline points="9 18 15 12 9 6"></polyline>
                         </svg>
@@ -1053,56 +1277,137 @@
                 <div class="doctors-grid">
 
                     <!-- Doctor 1: Dr. Protim Ghosh Dastidar -->
-                    <!-- PLACEHOLDER: Doctor 1 Profile -->
                     <article class="doctor-card animate-on-scroll">
                         <div class="doctor-image-box">
                             <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='360' viewBox='0 0 400 360'><rect width='400' height='360' fill='%23e0f2f5'/><circle cx='200' cy='140' r='55' fill='%230096a6'/><path d='M110 320c0-60 40-90 90-90s90 30 90 90' fill='%230b3b4e'/><text x='200' y='340' font-family='sans-serif' font-size='14' fill='%23ffffff' text-anchor='middle'>Dr. Protim Ghosh Dastidar</text></svg>"
-                                alt="Portrait of Dr. Debjit Sen, Chief Implantologist" loading="lazy">
+                                alt="Dr. Protim Ghosh Dastidar, Endodontist" loading="lazy">
                             <span class="doctor-exp-badge">18+ Years Exp.</span>
                         </div>
                         <div class="doctor-info">
                             <span class="doctor-specialty">Endodontist</span>
                             <h3 class="doctor-name">Dr. Protim Ghosh Dastidar</h3>
-                            <p class="doctor-degree">Specialist in Micro-Endodontics, Painless Single-Sitting Root
-                                Canals &amp; Conservative Dentistry</p>
-                            <a href="#booking-card" class="doctor-cta-link" data-scroll-to-form>Book Consultation with
-                                Dr. Protim →</a>
+                            <p class="doctor-degree">Specialist in Micro-Endodontics, Painless Single-Sitting Root Canals &amp; Conservative Dentistry</p>
+                            <a href="#hero" class="doctor-cta-link" data-doctor-name="Dr. Protim Ghosh Dastidar">Book Consultation with Dr. Protim →</a>
                         </div>
                     </article>
 
                     <!-- Doctor 2: Dr. Rishita Hari -->
-                    <!-- PLACEHOLDER: Doctor 2 Profile -->
                     <article class="doctor-card animate-on-scroll">
                         <div class="doctor-image-box">
                             <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='360' viewBox='0 0 400 360'><rect width='400' height='360' fill='%23e0f2f5'/><circle cx='200' cy='140' r='55' fill='%230096a6'/><path d='M110 320c0-60 40-90 90-90s90 30 90 90' fill='%230b3b4e'/><text x='200' y='340' font-family='sans-serif' font-size='14' fill='%23ffffff' text-anchor='middle'>Dr. Rishita Hari</text></svg>"
-                                alt="Portrait of Dr. Debjit Sen, Chief Implantologist" loading="lazy">
+                                alt="Dr. Rishita Hari, Pediatric Dentist" loading="lazy">
                             <span class="doctor-exp-badge">18+ Years Exp.</span>
                         </div>
                         <div class="doctor-info">
                             <span class="doctor-specialty">Pediatric Dentistry</span>
                             <h3 class="doctor-name">Dr. Rishita Hari</h3>
-                            <p class="doctor-degree">Specialist in Gentle, Child-Friendly Preventive Dental Care, Habit
-                                Breaking &amp; Restorative Care</p>
-                            <a href="#booking-card" class="doctor-cta-link" data-scroll-to-form>Book Consultation with
-                                Dr. Rishita →</a>
+                            <p class="doctor-degree">Specialist in Gentle, Child-Friendly Preventive Dental Care, Habit Breaking &amp; Restorative Care</p>
+                            <a href="#hero" class="doctor-cta-link" data-doctor-name="Dr. Rishita Hari">Book Consultation with Dr. Rishita →</a>
                         </div>
                     </article>
 
                     <!-- Doctor 3: Dr. Saptarshi Banerjee -->
-                    <!-- PLACEHOLDER: Doctor 3 Profile -->
                     <article class="doctor-card animate-on-scroll">
                         <div class="doctor-image-box">
                             <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='360' viewBox='0 0 400 360'><rect width='400' height='360' fill='%23e0f2f5'/><circle cx='200' cy='140' r='55' fill='%230096a6'/><path d='M110 320c0-60 40-90 90-90s90 30 90 90' fill='%230b3b4e'/><text x='200' y='340' font-family='sans-serif' font-size='14' fill='%23ffffff' text-anchor='middle'>Dr. Saptarshi Banerjee</text></svg>"
-                                alt="Portrait of Dr. Debjit Sen, Chief Implantologist" loading="lazy">
+                                alt="Dr. Saptarshi Banerjee, Implantologist" loading="lazy">
                             <span class="doctor-exp-badge">12+ Years Exp.</span>
                         </div>
                         <div class="doctor-info">
                             <span class="doctor-specialty">Prosthodontics and Implantology</span>
                             <h3 class="doctor-name">Dr. Saptarshi Banerjee</h3>
-                            <p class="doctor-degree">Consultant Prosthodontist • Specialist in Dental Implants, Crowns,
-                                Bridges &amp; Full Mouth Rehabilitation</p>
-                            <a href="#booking-card" class="doctor-cta-link" data-scroll-to-form>Book Consultation with
-                                Dr. Saptarshi →</a>
+                            <p class="doctor-degree">Consultant Prosthodontist • Specialist in Dental Implants, Crowns, Bridges &amp; Full Mouth Rehabilitation</p>
+                            <a href="#hero" class="doctor-cta-link" data-doctor-name="Dr. Saptarshi Banerjee">Book Consultation with Dr. Saptarshi →</a>
+                        </div>
+                    </article>
+
+                    <!-- Doctor 4: Dr. Aritra Sen -->
+                    <article class="doctor-card animate-on-scroll">
+                        <div class="doctor-image-box">
+                            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='360' viewBox='0 0 400 360'><rect width='400' height='360' fill='%23e0f2f5'/><circle cx='200' cy='140' r='55' fill='%230096a6'/><path d='M110 320c0-60 40-90 90-90s90 30 90 90' fill='%230b3b4e'/><text x='200' y='340' font-family='sans-serif' font-size='14' fill='%23ffffff' text-anchor='middle'>Dr. Aritra Sen</text></svg>"
+                                alt="Dr. Aritra Sen, Orthodontist" loading="lazy">
+                            <span class="doctor-exp-badge">10+ Years Exp.</span>
+                        </div>
+                        <div class="doctor-info">
+                            <span class="doctor-specialty">Orthodontics &amp; Braces</span>
+                            <h3 class="doctor-name">Dr. Aritra Sen</h3>
+                            <p class="doctor-degree">Specialist in Ceramic Braces, Self-Ligating Orthodontic Systems &amp; US FDA Clear Aligners</p>
+                            <a href="#hero" class="doctor-cta-link" data-doctor-name="Dr. Aritra Sen">Book Consultation with Dr. Aritra →</a>
+                        </div>
+                    </article>
+
+                    <!-- Doctor 5: Dr. Meghna Roy -->
+                    <article class="doctor-card animate-on-scroll">
+                        <div class="doctor-image-box">
+                            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='360' viewBox='0 0 400 360'><rect width='400' height='360' fill='%23e0f2f5'/><circle cx='200' cy='140' r='55' fill='%230096a6'/><path d='M110 320c0-60 40-90 90-90s90 30 90 90' fill='%230b3b4e'/><text x='200' y='340' font-family='sans-serif' font-size='14' fill='%23ffffff' text-anchor='middle'>Dr. Meghna Roy</text></svg>"
+                                alt="Dr. Meghna Roy, Periodontist" loading="lazy">
+                            <span class="doctor-exp-badge">9+ Years Exp.</span>
+                        </div>
+                        <div class="doctor-info">
+                            <span class="doctor-specialty">Gum Care &amp; Periodontology</span>
+                            <h3 class="doctor-name">Dr. Meghna Roy</h3>
+                            <p class="doctor-degree">Specialist in Laser Periodontal Therapy, Gum Disease Treatment &amp; Suture-Free Regenerative Care</p>
+                            <a href="#hero" class="doctor-cta-link" data-doctor-name="Dr. Meghna Roy">Book Consultation with Dr. Meghna →</a>
+                        </div>
+                    </article>
+
+                    <!-- Doctor 6: Dr. Kaushik Mondal -->
+                    <article class="doctor-card animate-on-scroll">
+                        <div class="doctor-image-box">
+                            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='360' viewBox='0 0 400 360'><rect width='400' height='360' fill='%23e0f2f5'/><circle cx='200' cy='140' r='55' fill='%230096a6'/><path d='M110 320c0-60 40-90 90-90s90 30 90 90' fill='%230b3b4e'/><text x='200' y='340' font-family='sans-serif' font-size='14' fill='%23ffffff' text-anchor='middle'>Dr. Kaushik Mondal</text></svg>"
+                                alt="Dr. Kaushik Mondal, Oral Surgeon" loading="lazy">
+                            <span class="doctor-exp-badge">12+ Years Exp.</span>
+                        </div>
+                        <div class="doctor-info">
+                            <span class="doctor-specialty">Oral &amp; Maxillofacial Surgery</span>
+                            <h3 class="doctor-name">Dr. Kaushik Mondal</h3>
+                            <p class="doctor-degree">Specialist in Impacted Wisdom Tooth Extractions, Oral Cysts &amp; Advanced Maxillofacial Surgery</p>
+                            <a href="#hero" class="doctor-cta-link" data-doctor-name="Dr. Kaushik Mondal">Book Consultation with Dr. Kaushik →</a>
+                        </div>
+                    </article>
+
+                    <!-- Doctor 7: Dr. Ishita Basu -->
+                    <article class="doctor-card animate-on-scroll">
+                        <div class="doctor-image-box">
+                            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='360' viewBox='0 0 400 360'><rect width='400' height='360' fill='%23e0f2f5'/><circle cx='200' cy='140' r='55' fill='%230096a6'/><path d='M110 320c0-60 40-90 90-90s90 30 90 90' fill='%230b3b4e'/><text x='200' y='340' font-family='sans-serif' font-size='14' fill='%23ffffff' text-anchor='middle'>Dr. Ishita Basu</text></svg>"
+                                alt="Dr. Ishita Basu, Cosmetic Dentist" loading="lazy">
+                            <span class="doctor-exp-badge">8+ Years Exp.</span>
+                        </div>
+                        <div class="doctor-info">
+                            <span class="doctor-specialty">Cosmetic Dentistry</span>
+                            <h3 class="doctor-name">Dr. Ishita Basu</h3>
+                            <p class="doctor-degree">Specialist in Digital Smile Design, Porcelain &amp; Composite Veneers &amp; Laser Teeth Whitening</p>
+                            <a href="#hero" class="doctor-cta-link" data-doctor-name="Dr. Ishita Basu">Book Consultation with Dr. Ishita →</a>
+                        </div>
+                    </article>
+
+                    <!-- Doctor 8: Dr. Rahul Dey -->
+                    <article class="doctor-card animate-on-scroll">
+                        <div class="doctor-image-box">
+                            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='360' viewBox='0 0 400 360'><rect width='400' height='360' fill='%23e0f2f5'/><circle cx='200' cy='140' r='55' fill='%230096a6'/><path d='M110 320c0-60 40-90 90-90s90 30 90 90' fill='%230b3b4e'/><text x='200' y='340' font-family='sans-serif' font-size='14' fill='%23ffffff' text-anchor='middle'>Dr. Rahul Dey</text></svg>"
+                                alt="Dr. Rahul Dey, General &amp; Geriatric Dentist" loading="lazy">
+                            <span class="doctor-exp-badge">11+ Years Exp.</span>
+                        </div>
+                        <div class="doctor-info">
+                            <span class="doctor-specialty">General &amp; Geriatric Dentistry</span>
+                            <h3 class="doctor-name">Dr. Rahul Dey</h3>
+                            <p class="doctor-degree">Specialist in Comprehensive Family Oral Healthcare, Crown &amp; Bridge Restorations &amp; Senior Dental Care</p>
+                            <a href="#hero" class="doctor-cta-link" data-doctor-name="Dr. Rahul Dey">Book Consultation with Dr. Rahul →</a>
+                        </div>
+                    </article>
+
+                    <!-- Doctor 9: Dr. Sutapa Chatterjee -->
+                    <article class="doctor-card animate-on-scroll">
+                        <div class="doctor-image-box">
+                            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='360' viewBox='0 0 400 360'><rect width='400' height='360' fill='%23e0f2f5'/><circle cx='200' cy='140' r='55' fill='%230096a6'/><path d='M110 320c0-60 40-90 90-90s90 30 90 90' fill='%230b3b4e'/><text x='200' y='340' font-family='sans-serif' font-size='14' fill='%23ffffff' text-anchor='middle'>Dr. Sutapa Chatterjee</text></svg>"
+                                alt="Dr. Sutapa Chatterjee, Oral Medicine &amp; Radiologist" loading="lazy">
+                            <span class="doctor-exp-badge">9+ Years Exp.</span>
+                        </div>
+                        <div class="doctor-info">
+                            <span class="doctor-specialty">Oral Medicine &amp; Radiology</span>
+                            <h3 class="doctor-name">Dr. Sutapa Chatterjee</h3>
+                            <p class="doctor-degree">Specialist in Advanced Oral Diagnosis, Mucosal Lesions &amp; Digital Low-Dose OPG Panoramic X-Rays</p>
+                            <a href="#hero" class="doctor-cta-link" data-doctor-name="Dr. Sutapa Chatterjee">Book Consultation with Dr. Sutapa →</a>
                         </div>
                     </article>
 
@@ -1144,7 +1449,7 @@
                             <div class="testimonial-author">
                                 <div class="author-avatar" aria-hidden="true">PD</div>
                                 <div class="author-meta">
-                                    <span class="author-name">Pritha Dutta</span>
+                                    <span class="author-name">Priya Doe (Sample Patient)</span>
                                     <span class="author-branch">Phoolbagan Branch • Root Canal Treatment</span>
                                 </div>
                             </div>
@@ -1538,21 +1843,6 @@
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
     </button>
-
-    <!-- Live Activity / Social Proof Floating Ticker (Discreet & Mobile-Friendly) -->
-    <div id="social-proof-ticker" class="social-proof-ticker" aria-live="polite">
-        <div class="ticker-inner">
-            <div class="ticker-icon-box">
-                <span class="ticker-pulse-dot" aria-hidden="true"></span>
-                <span class="ticker-emoji" aria-hidden="true">⚡</span>
-            </div>
-            <div class="ticker-text-wrap">
-                <p class="ticker-main" id="ticker-main">Ananya S. from Salt Lake booked a consultation</p>
-                <p class="ticker-meta" id="ticker-meta">4 minutes ago • Phoolbagan Clinic</p>
-            </div>
-            <button type="button" class="ticker-close-btn" id="ticker-close" aria-label="Dismiss notification">&times;</button>
-        </div>
-    </div>
 
     <!-- Exit-Intent / 40s Fallback Consultation Modal -->
     <div class="modal-overlay" id="exit-modal" role="dialog" aria-modal="true" aria-labelledby="modal-heading">

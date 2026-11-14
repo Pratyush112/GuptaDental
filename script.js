@@ -52,16 +52,218 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
         mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3682.261276274411!2d88.384218!3d22.625349!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89df464973307%3A0x6b4fb6c173c333!2sSouth%20Dum%20Dum%2C%20Kolkata!5e0!3m2!1sen!2sin!4v1700000000001!5m2!1sen!2sin'
       }
     ],
-    treatments: [
-      { id: 'implants', name: 'Dental Implants' },
-      { id: 'invisalign', name: 'Invisalign & Clear Braces' },
-      { id: 'root-canal', name: 'Microscopic Root Canal (RCT)' },
-      { id: 'whitening', name: 'Laser Teeth Whitening' },
-      { id: 'smile-design', name: 'Smile Designing & Veneers' },
-      { id: 'pediatric', name: 'Paediatric Dentistry' }
+    // 15 Specialities (Single Source of Truth)
+    specialities: [
+      {
+        id: 'implants',
+        name: 'Dental Implants',
+        category: 'Restorative & Implants',
+        badge: 'Lifetime Warranty',
+        desc: 'Permanent titanium and zirconia tooth replacements with computer-guided placement. Restore natural chewing power with a lifetime warranty.'
+      },
+      {
+        id: 'invisalign',
+        name: 'Invisalign & Clear Braces',
+        category: 'Aligners & Cosmetic',
+        badge: 'US FDA Approved',
+        desc: 'Virtually invisible clear aligners for teeth straightening without unsightly metal brackets or dietary restrictions.'
+      },
+      {
+        id: 'root-canal',
+        name: 'Microscopic Root Canal (RCT)',
+        category: 'Pain Relief & Gums',
+        badge: 'Single Sitting',
+        desc: 'Single-sitting painless root canal under Zeiss dental operating microscope. Save your infected natural tooth in under 45 minutes.'
+      },
+      {
+        id: 'whitening',
+        name: 'Laser Teeth Whitening',
+        category: 'Aligners & Cosmetic',
+        badge: '30-Min Fast Track',
+        desc: 'Advanced German laser whitening delivering up to 8 shades brighter teeth in a single 30-minute session. Completely enamel safe.'
+      },
+      {
+        id: 'smile-design',
+        name: 'Smile Designing & Veneers',
+        category: 'Aligners & Cosmetic',
+        badge: 'Digital Mockup',
+        desc: 'Custom ultra-thin porcelain veneers, composite bonding, and gum recontouring for a picture-perfect celebrity smile transformation.'
+      },
+      {
+        id: 'pediatric',
+        name: 'Paediatric Dentistry',
+        category: 'Family & Preventive',
+        badge: 'Fear-Free Care',
+        desc: 'Gentle, fear-free dental visits for children. Cavity prevention, painless fillings, and habit-breaking appliances in a kid-friendly setting.'
+      },
+      {
+        id: 'general',
+        name: 'General Dentistry',
+        category: 'Family & Preventive',
+        badge: 'Routine & Preventive',
+        desc: 'Comprehensive oral examinations, ultrasonic scaling, and tooth-colored composite restorations for lasting oral health.'
+      },
+      {
+        id: 'orthodontics',
+        name: 'Orthodontics & Braces',
+        category: 'Aligners & Cosmetic',
+        badge: 'Ceramic & Self-Ligating',
+        desc: 'Precision teeth and jaw alignment using modern metal, ceramic, and self-ligating braces tailored for children and adults.'
+      },
+      {
+        id: 'crown-bridge',
+        name: 'Crowns, Bridges & Dentures',
+        category: 'Restorative & Implants',
+        badge: 'CAD/CAM Precision',
+        desc: 'Custom CAD/CAM zirconia crowns, fixed dental bridges, and precision dentures engineered for lifelike durability.'
+      },
+      {
+        id: 'periodontics',
+        name: 'Gum Care / Periodontology',
+        category: 'Pain Relief & Gums',
+        badge: 'Deep Laser Therapy',
+        desc: 'Specialized therapy for bleeding gums, periodontitis, and bone preservation using gentle ultrasonic and laser care.'
+      },
+      {
+        id: 'oral-surgery',
+        name: 'Oral & Maxillofacial Surgery',
+        category: 'Pain Relief & Gums',
+        badge: 'Minimally Invasive',
+        desc: 'Atraumatic surgical wisdom tooth extractions, pre-prosthetic procedures, and minor cyst removals under computer-guided anesthesia.'
+      },
+      {
+        id: 'laser-dentistry',
+        name: 'Laser Dentistry',
+        category: 'Pain Relief & Gums',
+        badge: 'Suture-Free Healing',
+        desc: 'Modern soft-tissue procedures performed with dental lasers for faster healing, minimal bleeding, and no stitches.'
+      },
+      {
+        id: 'oral-medicine',
+        name: 'Oral Medicine & Radiology',
+        category: 'Diagnostics',
+        badge: 'Specialist Diagnosis',
+        desc: 'Expert clinical diagnosis and therapeutic management of chronic mouth ulcers, mucosal lesions, and TMJ jaw pain.'
+      },
+      {
+        id: 'opg',
+        name: 'OPG & Digital X-Ray Imaging',
+        category: 'Diagnostics',
+        badge: 'Ultra-Low Radiation',
+        desc: 'High-definition panoramic dental X-rays and digital sensor imaging with 80% reduced radiation for instant diagnosis.'
+      },
+      {
+        id: 'geriatric',
+        name: 'Geriatric Dentistry',
+        category: 'Family & Preventive',
+        badge: 'Senior-Friendly Care',
+        desc: 'Compassionate, gentle dental care specialized for seniors, addressing dry mouth, root caries, dentures, and medical health.'
+      }
+    ],
+    // 9 Doctors (Single Source of Truth)
+    doctors: [
+      {
+        id: 'dr-protim',
+        name: 'Dr. Protim Ghosh Dastidar',
+        title: 'Endodontist',
+        specialities: ['root-canal', 'general'],
+        branchIds: ['phoolbagan', 'seven-tanks'],
+        experience: '18+ Years Exp.',
+        photo: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='360' viewBox='0 0 400 360'><rect width='400' height='360' fill='%23e0f2f5'/><circle cx='200' cy='140' r='55' fill='%230096a6'/><path d='M110 320c0-60 40-90 90-90s90 30 90 90' fill='%230b3b4e'/><text x='200' y='340' font-family='sans-serif' font-size='14' fill='%23ffffff' text-anchor='middle'>Dr. Protim Ghosh Dastidar</text></svg>"
+      },
+      {
+        id: 'dr-rishita',
+        name: 'Dr. Rishita Hari',
+        title: 'Pediatric Dentistry',
+        specialities: ['pediatric'],
+        branchIds: ['phoolbagan', 'seven-tanks'],
+        experience: '18+ Years Exp.',
+        photo: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='360' viewBox='0 0 400 360'><rect width='400' height='360' fill='%23e0f2f5'/><circle cx='200' cy='140' r='55' fill='%230096a6'/><path d='M110 320c0-60 40-90 90-90s90 30 90 90' fill='%230b3b4e'/><text x='200' y='340' font-family='sans-serif' font-size='14' fill='%23ffffff' text-anchor='middle'>Dr. Rishita Hari</text></svg>"
+      },
+      {
+        id: 'dr-saptarshi',
+        name: 'Dr. Saptarshi Banerjee',
+        title: 'Prosthodontics and Implantology',
+        specialities: ['implants', 'crown-bridge'],
+        branchIds: ['phoolbagan', 'seven-tanks'],
+        experience: '12+ Years Exp.',
+        photo: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='360' viewBox='0 0 400 360'><rect width='400' height='360' fill='%23e0f2f5'/><circle cx='200' cy='140' r='55' fill='%230096a6'/><path d='M110 320c0-60 40-90 90-90s90 30 90 90' fill='%230b3b4e'/><text x='200' y='340' font-family='sans-serif' font-size='14' fill='%23ffffff' text-anchor='middle'>Dr. Saptarshi Banerjee</text></svg>"
+      },
+      // demo placeholder
+      {
+        id: 'dr-aritra',
+        name: 'Dr. Aritra Sen',
+        title: 'Orthodontist',
+        specialities: ['orthodontics', 'invisalign'],
+        branchIds: ['phoolbagan'],
+        experience: '10+ Years Exp.',
+        photo: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='360' viewBox='0 0 400 360'><rect width='400' height='360' fill='%23e0f2f5'/><circle cx='200' cy='140' r='55' fill='%230096a6'/><path d='M110 320c0-60 40-90 90-90s90 30 90 90' fill='%230b3b4e'/><text x='200' y='340' font-family='sans-serif' font-size='14' fill='%23ffffff' text-anchor='middle'>Dr. Aritra Sen</text></svg>"
+      },
+      // demo placeholder
+      {
+        id: 'dr-meghna',
+        name: 'Dr. Meghna Roy',
+        title: 'Periodontist',
+        specialities: ['periodontics', 'laser-dentistry'],
+        branchIds: ['phoolbagan', 'seven-tanks'],
+        experience: '9+ Years Exp.',
+        photo: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='360' viewBox='0 0 400 360'><rect width='400' height='360' fill='%23e0f2f5'/><circle cx='200' cy='140' r='55' fill='%230096a6'/><path d='M110 320c0-60 40-90 90-90s90 30 90 90' fill='%230b3b4e'/><text x='200' y='340' font-family='sans-serif' font-size='14' fill='%23ffffff' text-anchor='middle'>Dr. Meghna Roy</text></svg>"
+      },
+      // demo placeholder
+      {
+        id: 'dr-kaushik',
+        name: 'Dr. Kaushik Mondal',
+        title: 'Oral & Maxillofacial Surgeon',
+        specialities: ['oral-surgery'],
+        branchIds: ['seven-tanks'],
+        experience: '12+ Years Exp.',
+        photo: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='360' viewBox='0 0 400 360'><rect width='400' height='360' fill='%23e0f2f5'/><circle cx='200' cy='140' r='55' fill='%230096a6'/><path d='M110 320c0-60 40-90 90-90s90 30 90 90' fill='%230b3b4e'/><text x='200' y='340' font-family='sans-serif' font-size='14' fill='%23ffffff' text-anchor='middle'>Dr. Kaushik Mondal</text></svg>"
+      },
+      // demo placeholder
+      {
+        id: 'dr-ishita',
+        name: 'Dr. Ishita Basu',
+        title: 'Cosmetic Dentist',
+        specialities: ['smile-design', 'whitening'],
+        branchIds: ['phoolbagan', 'seven-tanks'],
+        experience: '8+ Years Exp.',
+        photo: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='360' viewBox='0 0 400 360'><rect width='400' height='360' fill='%23e0f2f5'/><circle cx='200' cy='140' r='55' fill='%230096a6'/><path d='M110 320c0-60 40-90 90-90s90 30 90 90' fill='%230b3b4e'/><text x='200' y='340' font-family='sans-serif' font-size='14' fill='%23ffffff' text-anchor='middle'>Dr. Ishita Basu</text></svg>"
+      },
+      // demo placeholder
+      {
+        id: 'dr-rahul',
+        name: 'Dr. Rahul Dey',
+        title: 'General Dentist',
+        specialities: ['general', 'crown-bridge', 'geriatric'],
+        branchIds: ['phoolbagan', 'seven-tanks'],
+        experience: '11+ Years Exp.',
+        photo: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='360' viewBox='0 0 400 360'><rect width='400' height='360' fill='%23e0f2f5'/><circle cx='200' cy='140' r='55' fill='%230096a6'/><path d='M110 320c0-60 40-90 90-90s90 30 90 90' fill='%230b3b4e'/><text x='200' y='340' font-family='sans-serif' font-size='14' fill='%23ffffff' text-anchor='middle'>Dr. Rahul Dey</text></svg>"
+      },
+      // demo placeholder
+      {
+        id: 'dr-sutapa',
+        name: 'Dr. Sutapa Chatterjee',
+        title: 'Oral Medicine & Radiologist',
+        specialities: ['oral-medicine', 'opg'],
+        branchIds: ['phoolbagan'],
+        experience: '9+ Years Exp.',
+        photo: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='360' viewBox='0 0 400 360'><rect width='400' height='360' fill='%23e0f2f5'/><circle cx='200' cy='140' r='55' fill='%230096a6'/><path d='M110 320c0-60 40-90 90-90s90 30 90 90' fill='%230b3b4e'/><text x='200' y='340' font-family='sans-serif' font-size='14' fill='%23ffffff' text-anchor='middle'>Dr. Sutapa Chatterjee</text></svg>"
+      }
     ],
     timeSlots: ['10:00 AM', '11:30 AM', '02:00 PM', '04:30 PM', '06:30 PM', '08:00 PM']
   };
+
+  // Backward compatibility alias
+  CLINIC_CONFIG.treatments = CLINIC_CONFIG.specialities;
+
+  // Helper: extract doctor initials for CSS avatar
+  function getDoctorInitials(name) {
+    if (!name) return 'GD';
+    const clean = name.replace(/^Dr\.?\s*/i, '').trim();
+    const parts = clean.split(/\s+/);
+    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  }
 
   /* Analytics & DataLayer tracking stub */
   window.dataLayer = window.dataLayer || [];
@@ -177,6 +379,236 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
       const dd = String(today.getDate()).padStart(2, '0');
       dateInput.min = `${yyyy}-${mm}-${dd}`;
       dateInput.value = `${yyyy}-${mm}-${dd}`;
+    }
+  }
+
+  /* ==========================================================================
+     2b. Hero Search Bar ("Find a Doctor" widget)
+     ========================================================================== */
+  function initHeroSearch() {
+    const searchSection = document.getElementById('hero-search-bar');
+    if (!searchSection) return;
+
+    const specialitySelect = document.getElementById('search-speciality');
+    const doctorSelect = document.getElementById('search-doctor');
+    const searchBtn = document.getElementById('btn-hero-search');
+    const clearBtn = document.getElementById('btn-hero-clear');
+    const resultsPanel = document.getElementById('search-results-panel');
+    const resultsGrid = document.getElementById('search-results-grid');
+    const resultsCount = document.getElementById('search-results-count');
+    const heroCard = document.getElementById('booking-card');
+    const formNameInput = document.getElementById('form-name');
+    const formTreatmentInput = document.getElementById('form-treatment');
+    const formDoctorInput = document.getElementById('form-doctor');
+    const formBranchInput = document.getElementById('form-branch');
+
+    // Populate Speciality options in alphabetical order
+    if (specialitySelect && specialitySelect.options.length <= 1) {
+      specialitySelect.innerHTML = '<option value="">All Specialities</option>';
+      const sortedSpecialities = CLINIC_CONFIG.specialities.slice().sort((a, b) => a.name.localeCompare(b.name));
+      sortedSpecialities.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.id;
+        opt.textContent = s.name;
+        specialitySelect.appendChild(opt);
+      });
+    }
+
+    // Populate or re-filter Doctor options
+    function updateHeroDoctorOptions(selectedSpecId = '') {
+      if (!doctorSelect) return;
+      const prevDocId = doctorSelect.value;
+      doctorSelect.innerHTML = '<option value="">All Doctors</option>';
+
+      let docs = CLINIC_CONFIG.doctors;
+      if (selectedSpecId) {
+        docs = docs.filter(d => d.specialities.includes(selectedSpecId));
+      }
+
+      let stillValid = false;
+      docs.forEach(d => {
+        const opt = document.createElement('option');
+        opt.value = d.id;
+        opt.textContent = `${d.name} (${d.title})`;
+        if (prevDocId && prevDocId === d.id) {
+          opt.selected = true;
+          stillValid = true;
+        }
+        doctorSelect.appendChild(opt);
+      });
+
+      if (!stillValid && prevDocId) {
+        doctorSelect.value = '';
+      }
+    }
+
+    // Initialize doctor options
+    updateHeroDoctorOptions();
+
+    // When Speciality filter changes: filter doctor dropdown
+    if (specialitySelect) {
+      specialitySelect.addEventListener('change', () => {
+        updateHeroDoctorOptions(specialitySelect.value);
+      });
+    }
+
+    // Perform Search & Render Results
+    function runSearch() {
+      const selectedSpecId = specialitySelect ? specialitySelect.value : '';
+      const selectedDocId = doctorSelect ? doctorSelect.value : '';
+
+      trackEvent('hero_search', {
+        speciality: selectedSpecId || 'all',
+        doctor: selectedDocId || 'all'
+      });
+
+      let matches = CLINIC_CONFIG.doctors;
+      if (selectedDocId) {
+        matches = matches.filter(d => d.id === selectedDocId);
+      } else if (selectedSpecId) {
+        matches = matches.filter(d => d.specialities.includes(selectedSpecId));
+      }
+
+      if (!resultsPanel || !resultsGrid) return;
+      resultsGrid.innerHTML = '';
+
+      if (resultsCount) {
+        resultsCount.textContent = `${matches.length} specialist${matches.length === 1 ? '' : 's'} found`;
+      }
+
+      if (matches.length === 0) {
+        resultsGrid.innerHTML = `
+          <div class="search-empty-state">
+            <p>No specialist found for that selection. Call us on <a href="tel:${CLINIC_CONFIG.contact.phoneTel}" class="search-empty-tel" data-brand-tel>${CLINIC_CONFIG.contact.phoneDisplay}</a> and we'll help.</p>
+          </div>
+        `;
+      } else {
+        matches.forEach(doc => {
+          const card = document.createElement('article');
+          card.className = 'doc-search-card';
+
+          const initials = getDoctorInitials(doc.name);
+
+          // Build Branch chips
+          const branchChips = doc.branchIds.map(bid => {
+            const b = CLINIC_CONFIG.branches.find(item => item.id === bid);
+            const bName = b ? (bid === 'phoolbagan' ? 'Phoolbagan' : 'Seven Tanks') : bid;
+            return `<span class="doc-search-chip doc-branch-chip">📍 ${bName}</span>`;
+          }).join('');
+
+          // Build Speciality chips
+          const specChips = doc.specialities.map(sid => {
+            const s = CLINIC_CONFIG.specialities.find(item => item.id === sid);
+            return `<span class="doc-search-chip doc-spec-chip">${s ? s.name : sid}</span>`;
+          }).join('');
+
+          const avatarHtml = doc.photo
+            ? `<img src="${doc.photo}" alt="${doc.name}" class="doc-search-avatar" loading="lazy">`
+            : `<div class="doc-search-initials" aria-hidden="true">${initials}</div>`;
+
+          card.innerHTML = `
+            <div class="doc-search-top">
+              ${avatarHtml}
+              <div class="doc-search-identity">
+                <h4 class="doc-search-name">${doc.name}</h4>
+                <p class="doc-search-title">${doc.title}</p>
+                <span class="doc-search-exp">${doc.experience}</span>
+              </div>
+            </div>
+            <div class="doc-search-chips-wrap">
+              <div class="doc-search-chips">
+                ${branchChips}
+                ${specChips}
+              </div>
+            </div>
+            <div class="doc-search-footer">
+              <button type="button" class="btn btn-cta btn-sm btn-book-with-doc" data-doc-id="${doc.id}">
+                Book with ${doc.name.replace(/^(Dr\.\s*)/i, '').split(' ')[0]} →
+              </button>
+            </div>
+          `;
+
+          // Handle "Book with Dr. X" action
+          const bookBtn = card.querySelector('.btn-book-with-doc');
+          if (bookBtn) {
+            bookBtn.addEventListener('click', () => {
+              // 1. Determine treatment
+              let chosenTreatmentName = '';
+              if (selectedSpecId && doc.specialities.includes(selectedSpecId)) {
+                const sObj = CLINIC_CONFIG.specialities.find(s => s.id === selectedSpecId);
+                if (sObj) chosenTreatmentName = sObj.name;
+              }
+              if (!chosenTreatmentName && doc.specialities.length > 0) {
+                const sObj = CLINIC_CONFIG.specialities.find(s => s.id === doc.specialities[0]);
+                if (sObj) chosenTreatmentName = sObj.name;
+              }
+
+              // 2. Set treatment in booking form
+              if (formTreatmentInput && chosenTreatmentName) {
+                formTreatmentInput.value = chosenTreatmentName;
+              }
+
+              // 3. Set branch if doctor works at only one branch
+              if (formBranchInput && doc.branchIds.length === 1) {
+                const bObj = CLINIC_CONFIG.branches.find(b => b.id === doc.branchIds[0]);
+                if (bObj) {
+                  formBranchInput.value = bObj.name;
+                  const pill = document.querySelector(`.branch-pill[data-branch="${bObj.name}"]`);
+                  if (pill) {
+                    document.querySelectorAll('.branch-pill').forEach(p => {
+                      p.classList.remove('is-active');
+                      p.setAttribute('aria-selected', 'false');
+                    });
+                    pill.classList.add('is-active');
+                    pill.setAttribute('aria-selected', 'true');
+                  }
+                }
+              }
+
+              // 4. Dispatch change events to refresh slot availability & doctor select options
+              if (formBranchInput) formBranchInput.dispatchEvent(new Event('change'));
+              if (formTreatmentInput) formTreatmentInput.dispatchEvent(new Event('change'));
+
+              // 5. Select this doctor
+              if (formDoctorInput) {
+                formDoctorInput.value = doc.name;
+              }
+
+              // 6. Smooth scroll to form, focus name, and pulse form
+              if (heroCard) {
+                heroCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                heroCard.classList.remove('is-highlighted');
+                void heroCard.offsetWidth;
+                heroCard.classList.add('is-highlighted');
+              }
+              if (formNameInput) {
+                setTimeout(() => formNameInput.focus(), 300);
+              }
+
+              trackEvent('hero_search_book_click', { doctor: doc.name, treatment: chosenTreatmentName });
+            });
+          }
+
+          resultsGrid.appendChild(card);
+        });
+      }
+
+      resultsPanel.style.display = 'block';
+      resultsPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    if (searchBtn) {
+      searchBtn.addEventListener('click', runSearch);
+    }
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        if (specialitySelect) specialitySelect.value = '';
+        updateHeroDoctorOptions();
+        if (doctorSelect) doctorSelect.value = '';
+        if (resultsPanel) resultsPanel.style.display = 'none';
+        if (resultsGrid) resultsGrid.innerHTML = '';
+      });
     }
   }
 
@@ -429,6 +861,8 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
     const phoneInput = document.getElementById('form-phone');
     const treatmentInput = document.getElementById('form-treatment');
     const branchInput = document.getElementById('form-branch');
+    const doctorInput = document.getElementById('form-doctor');
+    const doctorHintMsg = document.getElementById('doctor-hint-msg');
     const dateInput = document.getElementById('form-date');
     const slotInput = document.getElementById('form-slot');
     const messageInput = document.getElementById('form-message');
@@ -438,6 +872,71 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
     const newBookingBtn = document.getElementById('btn-book-another');
     const errorSlot = document.getElementById('error-slot');
     const errorForm = document.getElementById('error-form');
+
+    // Dynamically filter and populate Doctor dropdown in booking form
+    function updateDoctorSelect(keepSelection = true) {
+      if (!doctorInput) return;
+      const selectedBranchName = branchInput ? branchInput.value : '';
+      const selectedTreatmentName = treatmentInput ? treatmentInput.value : '';
+
+      // Find branch ID
+      let branchId = '';
+      if (selectedBranchName) {
+        const b = CLINIC_CONFIG.branches.find(br => br.name === selectedBranchName || br.id === selectedBranchName);
+        if (b) branchId = b.id;
+      }
+
+      // Find speciality ID
+      let specId = '';
+      if (selectedTreatmentName) {
+        const s = CLINIC_CONFIG.specialities.find(sp => sp.name === selectedTreatmentName || sp.id === selectedTreatmentName);
+        if (s) specId = s.id;
+      }
+
+      let matchingDocs = [];
+      let showHint = false;
+
+      if (branchId && specId) {
+        matchingDocs = CLINIC_CONFIG.doctors.filter(d => d.branchIds.includes(branchId) && d.specialities.includes(specId));
+        if (matchingDocs.length === 0) {
+          // If no specialist listed for this treatment at this branch, list all doctors of branch with hint
+          matchingDocs = CLINIC_CONFIG.doctors.filter(d => d.branchIds.includes(branchId));
+          showHint = true;
+        }
+      } else if (branchId) {
+        matchingDocs = CLINIC_CONFIG.doctors.filter(d => d.branchIds.includes(branchId));
+      } else if (specId) {
+        matchingDocs = CLINIC_CONFIG.doctors.filter(d => d.specialities.includes(specId));
+      } else {
+        matchingDocs = CLINIC_CONFIG.doctors.slice();
+      }
+
+      if (doctorHintMsg) {
+        doctorHintMsg.style.display = showHint ? 'block' : 'none';
+      }
+
+      const prevValue = keepSelection ? doctorInput.value : '';
+      doctorInput.innerHTML = '<option value="">Any available doctor</option>';
+
+      let stillValid = false;
+      matchingDocs.forEach(d => {
+        const opt = document.createElement('option');
+        opt.value = d.name;
+        opt.textContent = `${d.name} — ${d.title}`;
+        if (prevValue && (prevValue === d.name || prevValue === d.id)) {
+          opt.selected = true;
+          stillValid = true;
+        }
+        doctorInput.appendChild(opt);
+      });
+
+      if (!stillValid && prevValue && prevValue !== 'Any available doctor') {
+        doctorInput.value = '';
+      }
+    }
+
+    // Initialize doctor dropdown
+    updateDoctorSelect(false);
 
     // Request sequence counter to discard stale slot responses
     let slotRequestCounter = 0;
@@ -765,12 +1264,16 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
       if (phoneInput.classList.contains('is-invalid')) validatePhone();
     });
 
-    treatmentInput.addEventListener('change', validateTreatment);
+    treatmentInput.addEventListener('change', () => {
+      validateTreatment();
+      updateDoctorSelect(true);
+    });
 
     // Fetch slots when branch or date changes
     branchInput.addEventListener('change', () => {
       validateBranch();
       fetchSlots();
+      updateDoctorSelect(true);
     });
 
     dateInput.addEventListener('change', () => {
@@ -808,6 +1311,7 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
           syncBranchPills(val);
           validateBranch();
           fetchSlots();
+          updateDoctorSelect(true);
         });
       });
 
@@ -949,11 +1453,13 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
       }
 
       // Collect data using branch NAME and treatment NAME
+      const selectedDoctor = (doctorInput && doctorInput.value) ? doctorInput.value : 'Any available doctor';
       const payload = {
         action: 'book',
         name: nameInput.value.trim(),
         phone: phoneInput.value.trim(),
         treatment: treatmentInput.value,
+        doctor: selectedDoctor,
         branch: branchInput.value,
         date: dateInput.value,
         slot: slotInput.value || '10:00 AM',
@@ -1002,6 +1508,10 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
           document.getElementById('summary-patient').textContent = payload.name;
           document.getElementById('summary-phone').textContent = '+91 ' + payload.phone;
           document.getElementById('summary-treatment').textContent = payload.treatment;
+          const summaryDoctor = document.getElementById('summary-doctor');
+          if (summaryDoctor) {
+            summaryDoctor.textContent = payload.doctor;
+          }
           document.getElementById('summary-branch').textContent = payload.branch;
           document.getElementById('summary-date').textContent = `${payload.date} (${payload.slot})`;
 
@@ -1014,6 +1524,7 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
               `• Patient: ${payload.name}\n` +
               `• Phone: +91 ${payload.phone}\n` +
               `• Treatment: ${payload.treatment}\n` +
+              `• Doctor: ${payload.doctor}\n` +
               `• Branch: ${payload.branch}\n` +
               `• Date & Slot: ${payload.date} (${payload.slot})\n` +
               (payload.message ? `• Note: ${payload.message}` : '')
@@ -1055,6 +1566,7 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
       newBookingBtn.addEventListener('click', () => {
         form.reset();
         initBrandHydration();
+        updateDoctorSelect(false);
         setSlotError('');
         setFormError('');
         if (successCard) successCard.classList.remove('is-active');
@@ -1085,10 +1597,10 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
           if (matchedOpt) {
             treatmentSelect.value = matchedOpt.value;
           } else {
-            const found = CLINIC_CONFIG.treatments.find(t => t.id === treatmentId);
+            const found = CLINIC_CONFIG.specialities.find(t => t.id === treatmentId);
             if (found) treatmentSelect.value = found.name;
           }
-          // Trigger change event to clear errors and mark valid
+          // Trigger change event to clear errors, mark valid, and filter doctor dropdown
           treatmentSelect.dispatchEvent(new Event('change'));
         }
 
@@ -1098,6 +1610,11 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
           // Re-trigger CSS animation
           void heroCard.offsetWidth;
           heroCard.classList.add('is-highlighted');
+
+          const formName = document.getElementById('form-name');
+          if (formName) {
+            setTimeout(() => formName.focus(), 300);
+          }
 
           // Track CTA click
           trackEvent('treatment_card_cta_click', { treatmentId });
@@ -1114,7 +1631,75 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
           heroCard.classList.remove('is-highlighted');
           void heroCard.offsetWidth;
           heroCard.classList.add('is-highlighted');
+          const formName = document.getElementById('form-name');
+          if (formName) {
+            setTimeout(() => formName.focus(), 300);
+          }
           trackEvent('cta_booking_click', { ctaText: btn.textContent.trim() });
+        }
+      });
+    });
+  }
+
+  /* ==========================================================================
+     7b. Doctor Profile Cards -> Form Pre-select & Smooth Scroll
+     ========================================================================== */
+  function initDoctorCardClick() {
+    const doctorLinks = document.querySelectorAll('[data-doctor-name]');
+    const formDoctorInput = document.getElementById('form-doctor');
+    const formTreatmentInput = document.getElementById('form-treatment');
+    const formBranchInput = document.getElementById('form-branch');
+    const heroCard = document.querySelector('.booking-card');
+    const formNameInput = document.getElementById('form-name');
+
+    doctorLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const docName = link.getAttribute('data-doctor-name');
+        if (!docName) return;
+
+        const doc = CLINIC_CONFIG.doctors.find(d => d.name === docName);
+        if (doc) {
+          // 1. Set treatment if doctor has specialities
+          if (formTreatmentInput && doc.specialities && doc.specialities.length > 0) {
+            const firstSpec = CLINIC_CONFIG.specialities.find(s => s.id === doc.specialities[0]);
+            if (firstSpec) {
+              formTreatmentInput.value = firstSpec.name;
+              formTreatmentInput.dispatchEvent(new Event('change'));
+            }
+          }
+
+          // 2. Set branch if doctor works at only one branch
+          if (formBranchInput && doc.branchIds && doc.branchIds.length === 1) {
+            const bObj = CLINIC_CONFIG.branches.find(b => b.id === doc.branchIds[0]);
+            if (bObj) {
+              formBranchInput.value = bObj.name;
+              formBranchInput.dispatchEvent(new Event('change'));
+              const pill = document.querySelector(`.branch-pill[data-branch="${bObj.name}"]`);
+              if (pill) {
+                document.querySelectorAll('.branch-pill').forEach(p => p.classList.remove('is-active'));
+                pill.classList.add('is-active');
+              }
+            }
+          }
+
+          // 3. Select this doctor in dropdown
+          if (formDoctorInput) {
+            formDoctorInput.value = doc.name;
+          }
+
+          // 4. Smooth scroll to form, pulse card & focus name
+          if (heroCard) {
+            heroCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            heroCard.classList.remove('is-highlighted');
+            void heroCard.offsetWidth;
+            heroCard.classList.add('is-highlighted');
+          }
+          if (formNameInput) {
+            setTimeout(() => formNameInput.focus(), 350);
+          }
+
+          trackEvent('doctor_card_book_click', { doctor: doc.name });
         }
       });
     });
@@ -1520,13 +2105,187 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
   }
 
   /* ==========================================================================
-     13. Treatment Category Filter Bar (Section 4)
+     13. Specialities ("Centres of Excellence") Dynamic Rendering & Filtering
      ========================================================================== */
-  function initTreatmentFilter() {
+  function initSpecialitiesGrid() {
+    const grid = document.querySelector('.treatments-grid');
     const filterBtns = document.querySelectorAll('.treatment-filter-btn');
-    const cards = document.querySelectorAll('.treatment-card');
-    if (filterBtns.length === 0 || cards.length === 0) return;
+    const toggleBtn = document.getElementById('btn-toggle-specialities');
+    if (!grid) return;
 
+    let isExpanded = false;
+    let activeFilter = 'all';
+
+    function normalizeCategory(str) {
+      return (str || '')
+        .toString()
+        .toLowerCase()
+        .replace(/&amp;/g, '&')
+        .replace(/[^a-z0-9]/g, '');
+    }
+
+    // Helper to select treatment and scroll to booking form
+    function selectTreatmentAndScroll(treatmentId, treatmentName) {
+      const treatmentSelect = document.getElementById('form-treatment');
+      const heroCard = document.querySelector('.booking-card');
+
+      if (treatmentSelect) {
+        let matchedOpt = Array.from(treatmentSelect.options).find(
+          opt => opt.dataset.id === treatmentId || opt.value.toLowerCase() === treatmentId.toLowerCase()
+        );
+        if (!matchedOpt && treatmentName) {
+          matchedOpt = Array.from(treatmentSelect.options).find(
+            opt => opt.value.toLowerCase() === treatmentName.toLowerCase()
+          );
+        }
+        if (matchedOpt) {
+          treatmentSelect.value = matchedOpt.value;
+        } else if (treatmentName) {
+          treatmentSelect.value = treatmentName;
+        }
+        treatmentSelect.dispatchEvent(new Event('change'));
+      }
+
+      if (heroCard) {
+        heroCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        heroCard.classList.remove('is-highlighted');
+        void heroCard.offsetWidth;
+        heroCard.classList.add('is-highlighted');
+      }
+
+      const formNameInput = document.getElementById('form-name');
+      if (formNameInput) {
+        setTimeout(() => formNameInput.focus(), 350);
+      }
+    }
+
+    // SVG icons dictionary for each speciality ID
+    const icons = {
+      implants: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10M7 7h10M8 11h8M9 15h6M10 19h4M12 21v-2"></path><path d="M9 3v4M15 3v4"></path></svg>`,
+      invisalign: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14c2-4 6-6 8-6s6 2 8 6"></path><path d="M7 11v3M10 9v5M14 9v5M17 11v3"></path></svg>`,
+      'root-canal': `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 5 4.5 5 8c0 3 1.5 5.5 3 9 1 2 2 5 4 5s3-3 4-5c1.5-3.5 3-6 3-9 0-3.5-3-6-7-6z"></path><path d="M12 7v6"></path></svg>`,
+      whitening: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>`,
+      'smile-design': `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 3 4 3 4-3 4-3"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
+      pediatric: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>`,
+      general: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg>`,
+      orthodontics: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="4" height="6" rx="1"></rect><rect x="10" y="9" width="4" height="6" rx="1"></rect><rect x="17" y="9" width="4" height="6" rx="1"></rect><line x1="1" y1="12" x2="23" y2="12"></line></svg>`,
+      'crown-bridge': `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l3.5 8h11L21 8l-4.5 2.5L12 4l-4.5 6.5L3 8z"></path><path d="M6.5 16h11"></path></svg>`,
+      periodontics: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15c2.5 0 3-3 6-3s3.5 3 6 3 3.5-3 6-3"></path><path d="M3 19c2.5 0 3-3 6-3s3.5 3 6 3 3.5-3 6-3"></path></svg>`,
+      'oral-surgery': `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"></path><circle cx="12" cy="12" r="9"></circle></svg>`,
+      'laser-dentistry': `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="7"></line><line x1="12" y1="17" x2="12" y2="23"></line><line x1="1" y1="12" x2="7" y2="12"></line><line x1="17" y1="12" x2="23" y2="12"></line><circle cx="12" cy="12" r="3"></circle></svg>`,
+      'oral-medicine': `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><path d="M11 8v6M8 11h6"></path></svg>`,
+      opg: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>`,
+      geriatric: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`
+    };
+
+    // Render all 15 cards dynamically from Single Source of Truth
+    grid.innerHTML = '';
+    CLINIC_CONFIG.specialities.forEach((spec, idx) => {
+      const card = document.createElement('article');
+      card.className = 'treatment-card';
+      card.dataset.category = spec.category;
+      card.dataset.id = spec.id;
+      card.dataset.index = idx;
+      card.style.opacity = '1';
+      card.style.display = 'flex';
+
+      const iconSvg = icons[spec.id] || icons.general;
+
+      card.innerHTML = `
+        <div class="treatment-icon-wrap" aria-hidden="true">
+          ${iconSvg}
+        </div>
+        <h3 class="treatment-name">${spec.name}</h3>
+        <p class="treatment-desc">${spec.desc}</p>
+        <div class="treatment-card-footer">
+          <span class="treatment-tag">${spec.badge}</span>
+          <button type="button" class="btn btn-outline" data-book-treatment="${spec.id}">
+            Book Now →
+          </button>
+        </div>
+      `;
+
+      // Direct click handler for "Book Now" CTA on each card
+      const bookBtn = card.querySelector('[data-book-treatment]');
+      if (bookBtn) {
+        bookBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          selectTreatmentAndScroll(spec.id, spec.name);
+          trackEvent('treatment_book_click', { treatment: spec.name });
+        });
+      }
+
+      grid.appendChild(card);
+    });
+
+    // Visibility update function (handles 6-card limit on 'all' vs full list on filter)
+    function updateCardVisibility() {
+      const cards = grid.querySelectorAll('.treatment-card');
+      const normalizedActive = normalizeCategory(activeFilter);
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const cat = card.dataset.category || '';
+        const normalizedCardCat = normalizeCategory(cat);
+        const idx = parseInt(card.dataset.index, 10);
+
+        if (normalizedActive === 'all' || !normalizedActive) {
+          // If All: respect isExpanded (first 6 cards or all 15)
+          if (!isExpanded && idx >= 6) {
+            card.classList.add('is-collapsed');
+            card.style.display = 'none';
+          } else {
+            card.classList.remove('is-collapsed');
+            card.style.display = 'flex';
+            card.style.opacity = '1';
+            visibleCount++;
+          }
+        } else {
+          // If category filter active: show all matches without limit
+          if (normalizedCardCat === normalizedActive) {
+            card.classList.remove('is-collapsed');
+            card.style.display = 'flex';
+            card.style.opacity = '1';
+            visibleCount++;
+          } else {
+            card.classList.add('is-collapsed');
+            card.style.display = 'none';
+          }
+        }
+      });
+
+      // Update toggle button text, icon and aria-expanded
+      if (toggleBtn) {
+        if (normalizedActive === 'all' || !normalizedActive) {
+          toggleBtn.style.display = 'inline-flex';
+          toggleBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+          const textSpan = toggleBtn.querySelector('span');
+          if (textSpan) {
+            textSpan.textContent = isExpanded ? 'Show fewer specialities' : 'View all 15 specialities';
+          }
+          const icon = toggleBtn.querySelector('.toggle-icon');
+          if (icon) {
+            icon.style.transform = isExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
+          }
+        } else {
+          toggleBtn.style.display = 'none';
+        }
+      }
+    }
+
+    // Toggle button listener (View all 15 specialities <-> Show fewer)
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        isExpanded = !isExpanded;
+        updateCardVisibility();
+        if (!isExpanded) {
+          const sec = document.getElementById('treatments');
+          if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+
+    // Category filter button listeners
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         filterBtns.forEach(b => {
@@ -1536,72 +2295,22 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
         btn.classList.add('is-active');
         btn.setAttribute('aria-selected', 'true');
 
-        const filterVal = btn.dataset.filter || 'all';
-
-        cards.forEach(card => {
-          const cat = card.dataset.category || '';
-          if (filterVal === 'all' || cat === filterVal) {
-            card.classList.remove('is-hidden');
-          } else {
-            card.classList.add('is-hidden');
-          }
-        });
-
-        trackEvent('treatment_filter_change', { filter: filterVal });
+        activeFilter = btn.dataset.filter || 'all';
+        updateCardVisibility();
+        trackEvent('treatment_filter_change', { filter: activeFilter });
       });
     });
+
+    // Initial display
+    updateCardVisibility();
   }
 
   /* ==========================================================================
-     14. Live Social Proof Floating Ticker
+     14. Live Social Proof Floating Ticker (Disabled)
      ========================================================================== */
   function initSocialProofTicker() {
     const ticker = document.getElementById('social-proof-ticker');
-    const tickerMain = document.getElementById('ticker-main');
-    const tickerMeta = document.getElementById('ticker-meta');
-    const tickerClose = document.getElementById('ticker-close');
-
-    if (!ticker || !tickerMain || !tickerMeta) return;
-
-    if (sessionStorage.getItem('guptas_ticker_closed')) {
-      ticker.style.display = 'none';
-      return;
-    }
-
-    if (tickerClose) {
-      tickerClose.addEventListener('click', () => {
-        ticker.style.opacity = '0';
-        ticker.style.transform = 'translateY(16px)';
-        setTimeout(() => {
-          ticker.style.display = 'none';
-        }, 400);
-        sessionStorage.setItem('guptas_ticker_closed', 'true');
-      });
-    }
-
-    const tickerItems = [
-      { main: 'Ananya S. from Salt Lake booked a consultation', meta: '3 mins ago • Phoolbagan Clinic' },
-      { main: 'Debashis G. from Dum Dum booked Dental Implant Visit', meta: '9 mins ago • Seven Tanks Clinic' },
-      { main: 'Rahul M. from Kankurgachi booked Root Canal treatment', meta: '14 mins ago • Phoolbagan Clinic' },
-      { main: 'Sneha D. from Baguiati booked 3D Aligners Scan', meta: '22 mins ago • Seven Tanks Clinic' },
-      { main: 'Amitava B. from Girish Park booked Laser Teeth Whitening', meta: '37 mins ago • Phoolbagan Clinic' }
-    ];
-
-    let currentIdx = 0;
-    setInterval(() => {
-      if (ticker.style.display === 'none') return;
-      currentIdx = (currentIdx + 1) % tickerItems.length;
-
-      ticker.style.opacity = '0';
-      ticker.style.transform = 'translateY(10px)';
-
-      setTimeout(() => {
-        tickerMain.textContent = tickerItems[currentIdx].main;
-        tickerMeta.textContent = tickerItems[currentIdx].meta;
-        ticker.style.opacity = '1';
-        ticker.style.transform = 'translateY(0)';
-      }, 350);
-    }, 8500);
+    if (!ticker) return;
   }
 
   /* ==========================================================================
@@ -1609,18 +2318,20 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
      ========================================================================== */
   document.addEventListener('DOMContentLoaded', () => {
     initBrandHydration();
+    initHeroSearch();
     initHeaderScroll();
     initHeroBackgroundSlider();
     initCountUpStats();
     initScrollReveal();
     initBookingForm();
     initTreatmentToForm();
+    initDoctorCardClick();
     initBeforeAfterSlider();
     initTestimonialCarousel();
     initFaqAccordion();
     initExitIntentModal();
     initSymptomGuide();
-    initTreatmentFilter();
+    initSpecialitiesGrid();
     initSocialProofTicker();
   });
 
