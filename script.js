@@ -899,14 +899,18 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
       concernPills.forEach(pill => {
         pill.addEventListener('click', () => {
           const concernText = pill.textContent.trim();
-          const treatmentTarget = pill.dataset.treatment;
+          const treatmentTarget = pill.dataset.treatment || pill.dataset.concernTreatment;
 
           const wasActive = pill.classList.contains('is-active');
           concernPills.forEach(p => p.classList.remove('is-active'));
           if (!wasActive) pill.classList.add('is-active');
 
           if (!wasActive && treatmentTarget && treatmentInput) {
-            const found = CLINIC_CONFIG.treatments.find(t => t.id === treatmentTarget);
+            const found = CLINIC_CONFIG.treatments.find(t =>
+              t.id === treatmentTarget ||
+              t.name.toLowerCase().includes(treatmentTarget.toLowerCase()) ||
+              treatmentTarget.toLowerCase().includes(t.name.toLowerCase())
+            );
             if (found) {
               treatmentInput.value = found.name;
               treatmentInput.dispatchEvent(new Event('change'));
@@ -1477,17 +1481,23 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
 
     tiles.forEach(tile => {
       tile.addEventListener('click', () => {
-        const treatmentId = tile.dataset.treatment;
+        const treatmentId = tile.dataset.treatment || tile.dataset.symptomTreatment;
         const symptomTitle = tile.querySelector('.symptom-tile-title')?.textContent?.trim() || '';
 
         if (treatmentSelect && treatmentId) {
           const matchOpt = Array.from(treatmentSelect.options).find(
-            opt => opt.dataset.id === treatmentId || opt.value.toLowerCase().includes(treatmentId)
+            opt => opt.dataset.id === treatmentId ||
+                   opt.value.toLowerCase().includes(treatmentId.toLowerCase()) ||
+                   treatmentId.toLowerCase().includes(opt.value.toLowerCase())
           );
           if (matchOpt) {
             treatmentSelect.value = matchOpt.value;
           } else {
-            const found = CLINIC_CONFIG.treatments.find(t => t.id === treatmentId);
+            const found = CLINIC_CONFIG.treatments.find(t =>
+              t.id === treatmentId ||
+              t.name.toLowerCase().includes(treatmentId.toLowerCase()) ||
+              treatmentId.toLowerCase().includes(t.name.toLowerCase())
+            );
             if (found) treatmentSelect.value = found.name;
           }
           treatmentSelect.dispatchEvent(new Event('change'));
@@ -1543,148 +1553,7 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
   }
 
   /* ==========================================================================
-     14. Treatment Cost & 0% EMI Estimator (Section 4b)
-     ========================================================================== */
-  function initCostEstimator() {
-    const tabBtns = document.querySelectorAll('.calc-tab-btn');
-    const groups = document.querySelectorAll('.calc-option-group');
-    const amountEl = document.getElementById('calc-amount');
-    const periodEl = document.getElementById('calc-period');
-    const emiEl = document.getElementById('calc-emi');
-    const bookBtn = document.getElementById('btn-calc-book');
-    const treatmentSelect = document.getElementById('form-treatment');
-    const heroCard = document.querySelector('.booking-card');
-    const messageBox = document.getElementById('form-message');
-
-    if (tabBtns.length === 0 || !amountEl) return;
-
-    let currentService = 'implants';
-
-    // Pricing calculation model
-    function calculateCost() {
-      let total = 22000;
-      let period = '/ tooth';
-      let treatmentName = "Dental Implants";
-
-      if (currentService === 'implants') {
-        treatmentName = "Dental Implants";
-        const teethActive = document.querySelector('#calc-implant-teeth .calc-pill.is-active')?.dataset.val || '1';
-        const tierActive = document.querySelector('#calc-implant-tier .calc-pill.is-active')?.dataset.val || 'standard';
-
-        if (teethActive === 'full') {
-          total = tierActive === 'standard' ? 160000 : 220000;
-          period = '/ arch';
-        } else {
-          const count = parseInt(teethActive, 10) || 1;
-          const perTooth = tierActive === 'standard' ? 22000 : 32000;
-          total = count * perTooth;
-          period = count === 1 ? '/ tooth' : `for ${count} teeth`;
-        }
-      } else if (currentService === 'rct') {
-        treatmentName = "Root Canal Treatment";
-        const loc = document.querySelector('#calc-rct-location .calc-pill.is-active')?.dataset.val || 'front';
-        const type = document.querySelector('#calc-rct-type .calc-pill.is-active')?.dataset.val || 'standard';
-        let base = loc === 'front' ? 3500 : 4500;
-        if (type === 'laser') base += 1500;
-        total = base;
-        period = '/ tooth';
-      } else if (currentService === 'invisalign') {
-        treatmentName = "Invisalign & Braces";
-        const tier = document.querySelector('#calc-aligner-tier .calc-pill.is-active')?.dataset.val || 'mild';
-        if (tier === 'mild') total = 45000;
-        else if (tier === 'moderate') total = 75000;
-        else total = 125000;
-        period = 'complete plan';
-      } else if (currentService === 'whitening') {
-        treatmentName = "Laser Teeth Whitening";
-        const tier = document.querySelector('#calc-whitening-tier .calc-pill.is-active')?.dataset.val || 'express';
-        total = tier === 'express' ? 6500 : 11500;
-        period = 'per session';
-      } else if (currentService === 'crowns') {
-        treatmentName = "Smile Designing";
-        const tier = document.querySelector('#calc-crown-tier .calc-pill.is-active')?.dataset.val || 'metal-free';
-        total = tier === 'metal-free' ? 6500 : 11000;
-        period = '/ crown';
-      }
-
-      const emiMonthly = Math.round(total / 12);
-
-      amountEl.textContent = total.toLocaleString('en-IN');
-      if (periodEl) periodEl.textContent = period;
-      if (emiEl) emiEl.textContent = `₹${emiMonthly.toLocaleString('en-IN')}/mo`;
-
-      return { total, treatmentName };
-    }
-
-    // Tab switching
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        tabBtns.forEach(b => {
-          b.classList.remove('is-active');
-          b.setAttribute('aria-selected', 'false');
-        });
-        btn.classList.add('is-active');
-        btn.setAttribute('aria-selected', 'true');
-
-        currentService = btn.dataset.calcService;
-
-        // Show matching option group
-        groups.forEach(g => {
-          if (g.id === `calc-group-${currentService}`) {
-            g.style.display = 'block';
-            g.classList.add('is-active');
-          } else {
-            g.style.display = 'none';
-            g.classList.remove('is-active');
-          }
-        });
-
-        calculateCost();
-      });
-    });
-
-    // Pill selector click handler
-    document.querySelectorAll('.calc-pill-selector .calc-pill').forEach(pill => {
-      pill.addEventListener('click', () => {
-        const parent = pill.parentElement;
-        if (!parent) return;
-        parent.querySelectorAll('.calc-pill').forEach(p => p.classList.remove('is-active'));
-        pill.classList.add('is-active');
-        calculateCost();
-      });
-    });
-
-    // "Lock This Estimate & Book Free Visit" CTA
-    if (bookBtn) {
-      bookBtn.addEventListener('click', () => {
-        const { total, treatmentName } = calculateCost();
-
-        if (treatmentSelect) {
-          treatmentSelect.value = treatmentName;
-          treatmentSelect.dispatchEvent(new Event('change'));
-        }
-
-        if (messageBox) {
-          messageBox.value = `Estimate computed: ${treatmentName} ~₹${total.toLocaleString('en-IN')}. Inquiring 0% EMI & free 3D scan.`;
-        }
-
-        if (heroCard) {
-          heroCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          heroCard.classList.remove('is-highlighted');
-          void heroCard.offsetWidth;
-          heroCard.classList.add('is-highlighted');
-        }
-
-        trackEvent('calc_lock_estimate_click', { service: currentService, estimate: total });
-      });
-    }
-
-    // Initial calculation
-    calculateCost();
-  }
-
-  /* ==========================================================================
-     15. Live Social Proof Floating Ticker
+     14. Live Social Proof Floating Ticker
      ========================================================================== */
   function initSocialProofTicker() {
     const ticker = document.getElementById('social-proof-ticker');
@@ -1752,7 +1621,6 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
     initExitIntentModal();
     initSymptomGuide();
     initTreatmentFilter();
-    initCostEstimator();
     initSocialProofTicker();
   });
 
