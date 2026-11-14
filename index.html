@@ -270,6 +270,24 @@
                             <span class="booking-badge">Limited Time Offer</span>
                             <h2 id="booking-form-heading" class="booking-title">Book Free Consultation</h2>
                             <p class="booking-desc">Includes 3D Digital Scan + Evaluation (Worth ₹1,500)</p>
+
+                            <!-- Interactive Branch Segment Selector (Mobile-First Touch) -->
+                            <div class="branch-segment" id="branch-segment" role="tablist" aria-label="Select Clinic Branch">
+                                <button type="button" class="branch-pill is-active" data-branch="Phoolbagan / Kankurgachi" role="tab" aria-selected="true">
+                                    <span class="branch-pill-dot"></span>
+                                    <span class="branch-pill-body">
+                                        <span class="branch-pill-title">Phoolbagan</span>
+                                        <span class="branch-pill-sub">CIT Rd • Open 7 Days</span>
+                                    </span>
+                                </button>
+                                <button type="button" class="branch-pill" data-branch="Seven Tanks / South Dum Dum" role="tab" aria-selected="false">
+                                    <span class="branch-pill-dot"></span>
+                                    <span class="branch-pill-body">
+                                        <span class="branch-pill-title">Seven Tanks</span>
+                                        <span class="branch-pill-sub">Dum Dum • Till 9PM</span>
+                                    </span>
+                                </button>
+                            </div>
                         </div>
 
                         <!-- Booking Form Component -->
@@ -321,7 +339,7 @@
                                         <div class="form-error-msg" id="error-treatment" role="alert"></div>
                                     </div>
 
-                                    <!-- Clinic Branch -->
+                                    <!-- Clinic Branch (Synchronized with Branch Segment) -->
                                     <div class="form-group">
                                         <label for="form-branch" class="form-label">
                                             Clinic Branch <span class="req" aria-hidden="true">*</span>
@@ -334,31 +352,67 @@
                                     </div>
                                 </div>
 
-                                <!-- Row 3: Preferred Date & Time Window (2-Col) -->
-                                <div class="form-grid-2col">
-                                    <div class="form-group">
+                                <!-- Preferred Date (Horizontal Quick Date Strip + Picker) -->
+                                <div class="form-group date-picker-group">
+                                    <div class="date-header-row">
                                         <label for="form-date" class="form-label">
                                             Preferred Date <span class="req" aria-hidden="true">*</span>
                                         </label>
-                                        <input type="date" id="form-date" class="form-control" required>
-                                        <div class="form-error-msg" id="error-date" role="alert"></div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="form-slot" class="form-label">
-                                            Time Window
+                                        <label for="form-date" class="date-picker-trigger" title="Select custom date">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                                            </svg>
+                                            <span>Calendar</span>
                                         </label>
-                                        <select id="form-slot" class="form-control">
-                                            <!-- Populated dynamically via script.js -->
-                                        </select>
                                     </div>
+                                    <!-- Dynamic 7-Day Mobile Quick Date Strip -->
+                                    <div class="quick-dates-scroll" id="quick-dates-strip" role="radiogroup" aria-label="Select Date">
+                                        <!-- Built dynamically in script.js -->
+                                    </div>
+                                    <input type="date" id="form-date" class="form-control date-input-hidden" required>
+                                    <div class="form-error-msg" id="error-date" role="alert"></div>
                                 </div>
 
-                                <!-- Row 4: Optional Concern (Single line compact input) -->
-                                <div class="form-group">
+                                <!-- Available Time Window (Visual Touch Chips + Select) -->
+                                <div class="form-group slot-picker-group">
+                                    <div class="slot-header-row">
+                                        <label for="form-slot" class="form-label">
+                                            Available Time Window
+                                        </label>
+                                        <span class="slot-live-status">
+                                            <span class="slot-live-dot"></span> Live Sync
+                                        </span>
+                                    </div>
+                                    <select id="form-slot" class="form-control slot-select-hidden">
+                                        <!-- Synchronized for API submission -->
+                                    </select>
+                                    <!-- Dynamic Interactive Slot Chips Grid -->
+                                    <div class="slot-chips-grid" id="slot-chips-grid" role="radiogroup" aria-label="Select Time Slot">
+                                        <!-- Populated dynamically via script.js -->
+                                    </div>
+                                    <div class="form-error-msg" id="error-slot" role="alert"></div>
+                                </div>
+
+                                <!-- Row 4: Quick Concern Tags & Optional Note -->
+                                <div class="form-group concern-input-group">
+                                    <div class="quick-concerns-box">
+                                        <span class="quick-concerns-label">Quick select concern:</span>
+                                        <div class="quick-concerns-list">
+                                            <button type="button" class="concern-pill" data-concern-treatment="Microscopic Root Canal (RCT)" data-concern-text="Severe toothache / sensitivity">⚡ Tooth Pain</button>
+                                            <button type="button" class="concern-pill" data-concern-treatment="Dental Implants" data-concern-text="Missing tooth replacement">🦷 Missing Tooth</button>
+                                            <button type="button" class="concern-pill" data-concern-treatment="Invisalign & Clear Braces" data-concern-text="Looking for clear braces">✨ Braces</button>
+                                            <button type="button" class="concern-pill" data-concern-treatment="Laser Teeth Whitening" data-concern-text="Yellow stains / whitening">💎 Whitening</button>
+                                        </div>
+                                    </div>
                                     <input type="text" id="form-message" class="form-control"
                                         placeholder="Any dental concern or question? (Optional)">
                                 </div>
+
+                                <div class="form-error-msg" id="error-form" role="alert"
+                                    style="margin-bottom: var(--space-2); text-align: center; font-size: 0.75rem;"></div>
 
                                 <!-- Submit Button -->
                                 <button type="submit" id="form-submit-btn" class="btn btn-cta btn-block">
@@ -394,6 +448,11 @@
 
                             <!-- Summary Card -->
                             <div class="booking-summary-box">
+                                <div class="summary-row">
+                                    <span class="summary-label">Booking ID:</span>
+                                    <span class="summary-value" id="summary-booking-id"
+                                        style="font-weight: 700; color: var(--primary); letter-spacing: 0.04em;">-</span>
+                                </div>
                                 <div class="summary-row">
                                     <span class="summary-label">Patient Name:</span>
                                     <span class="summary-value" id="summary-patient">-</span>
@@ -486,7 +545,64 @@
         </section>
 
         <!-- ========================================================================
-         SECTION 4: Treatments (Grid of 6 Cards with Auto-Select Hook)
+         SECTION 3b: Interactive Dental Symptom & Guidance Banner (Mobile-First)
+         ======================================================================== -->
+        <section class="section symptom-section" id="symptoms-guide" aria-label="Quick Dental Symptom Finder">
+            <div class="container">
+                <div class="symptom-card animate-on-scroll">
+                    <div class="symptom-header">
+                        <span class="section-pill">Need Quick Guidance?</span>
+                        <h2 class="symptom-title">What brings you to Gupta's Dental today?</h2>
+                        <p class="symptom-desc">Tap your symptom below to see recommended care, doctor specialty, and transparent estimate.</p>
+                    </div>
+
+                    <div class="symptom-grid">
+                        <div class="symptom-tile" data-symptom-treatment="Microscopic Root Canal (RCT)" role="button" tabindex="0">
+                            <div class="symptom-icon symptom-icon-red">⚡</div>
+                            <div class="symptom-content">
+                                <div class="symptom-tile-title">Severe Pain or Sensitivity</div>
+                                <div class="symptom-recom">Recommended: <strong>Painless Laser RCT</strong></div>
+                                <div class="symptom-meta">100% Pain-free • From ₹3,500</div>
+                            </div>
+                            <span class="symptom-arrow" aria-hidden="true">→</span>
+                        </div>
+
+                        <div class="symptom-tile" data-symptom-treatment="Dental Implants" role="button" tabindex="0">
+                            <div class="symptom-icon symptom-icon-teal">🦷</div>
+                            <div class="symptom-content">
+                                <div class="symptom-tile-title">Missing or Broken Tooth</div>
+                                <div class="symptom-recom">Recommended: <strong>Permanent Implants</strong></div>
+                                <div class="symptom-meta">Lifetime Warranty • 0% EMI</div>
+                            </div>
+                            <span class="symptom-arrow" aria-hidden="true">→</span>
+                        </div>
+
+                        <div class="symptom-tile" data-symptom-treatment="Invisalign & Clear Braces" role="button" tabindex="0">
+                            <div class="symptom-icon symptom-icon-purple">✨</div>
+                            <div class="symptom-content">
+                                <div class="symptom-tile-title">Crooked or Gapped Teeth</div>
+                                <div class="symptom-recom">Recommended: <strong>Invisalign Aligners</strong></div>
+                                <div class="symptom-meta">100% Invisible • 3D Scan</div>
+                            </div>
+                            <span class="symptom-arrow" aria-hidden="true">→</span>
+                        </div>
+
+                        <div class="symptom-tile" data-symptom-treatment="Laser Teeth Whitening" role="button" tabindex="0">
+                            <div class="symptom-icon symptom-icon-amber">💎</div>
+                            <div class="symptom-content">
+                                <div class="symptom-tile-title">Yellow or Stained Teeth</div>
+                                <div class="symptom-recom">Recommended: <strong>Laser Whitening</strong></div>
+                                <div class="symptom-meta">1-Hour Session • 6 Shades Lighter</div>
+                            </div>
+                            <span class="symptom-arrow" aria-hidden="true">→</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================
+         SECTION 4: Treatments (Grid of 6 Cards with Category Filter)
          ======================================================================== -->
         <section class="section" id="treatments" aria-labelledby="treatments-title">
             <div class="container">
@@ -500,10 +616,29 @@
                     </p>
                 </div>
 
+                <!-- Category Filter Bar (Touch-Friendly Horizontal Scroll) -->
+                <div class="treatment-filter-bar animate-on-scroll" role="tablist" aria-label="Filter Treatments by Category">
+                    <button type="button" class="treatment-filter-btn is-active" data-filter="all" role="tab" aria-selected="true">
+                        <span>All Treatments (6)</span>
+                    </button>
+                    <button type="button" class="treatment-filter-btn" data-filter="implants" role="tab" aria-selected="false">
+                        <span>🦷 Implants</span>
+                    </button>
+                    <button type="button" class="treatment-filter-btn" data-filter="pain-relief" role="tab" aria-selected="false">
+                        <span>🔬 Pain Relief (RCT)</span>
+                    </button>
+                    <button type="button" class="treatment-filter-btn" data-filter="cosmetic" role="tab" aria-selected="false">
+                        <span>✨ Aligners &amp; Smile</span>
+                    </button>
+                    <button type="button" class="treatment-filter-btn" data-filter="kids" role="tab" aria-selected="false">
+                        <span>👶 Pediatric</span>
+                    </button>
+                </div>
+
                 <div class="treatments-grid">
 
                     <!-- Treatment 1: Implants -->
-                    <article class="treatment-card animate-on-scroll">
+                    <article class="treatment-card animate-on-scroll" data-category="implants">
                         <div class="treatment-icon-wrap" aria-hidden="true">
                             <!-- Dental Implant Screw SVG Icon -->
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -527,7 +662,7 @@
                     </article>
 
                     <!-- Treatment 2: Invisalign & Braces -->
-                    <article class="treatment-card animate-on-scroll">
+                    <article class="treatment-card animate-on-scroll" data-category="cosmetic">
                         <div class="treatment-icon-wrap" aria-hidden="true">
                             <!-- Clear Aligners Arch SVG Icon -->
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -551,7 +686,7 @@
                     </article>
 
                     <!-- Treatment 3: Microscopic Root Canal -->
-                    <article class="treatment-card animate-on-scroll">
+                    <article class="treatment-card animate-on-scroll" data-category="pain-relief">
                         <div class="treatment-icon-wrap" aria-hidden="true">
                             <!-- Tooth Root SVG Icon -->
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -577,7 +712,7 @@
                     </article>
 
                     <!-- Treatment 4: Teeth Whitening -->
-                    <article class="treatment-card animate-on-scroll">
+                    <article class="treatment-card animate-on-scroll" data-category="cosmetic">
                         <div class="treatment-icon-wrap" aria-hidden="true">
                             <!-- Sparkle / Laser Whitening SVG Icon -->
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -602,7 +737,7 @@
                     </article>
 
                     <!-- Treatment 5: Smile Designing & Veneers -->
-                    <article class="treatment-card animate-on-scroll">
+                    <article class="treatment-card animate-on-scroll" data-category="cosmetic">
                         <div class="treatment-icon-wrap" aria-hidden="true">
                             <!-- Smile Aesthetic SVG Icon -->
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -628,7 +763,7 @@
                     </article>
 
                     <!-- Treatment 6: Paediatric Dentistry -->
-                    <article class="treatment-card animate-on-scroll">
+                    <article class="treatment-card animate-on-scroll" data-category="kids">
                         <div class="treatment-icon-wrap" aria-hidden="true">
                             <!-- Friendly Shield Heart SVG Icon -->
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -654,6 +789,150 @@
 
                 </div>
 
+            </div>
+        </section>
+
+        <!-- ========================================================================
+         SECTION 4b: Interactive Treatment Cost & 0% EMI Estimator (Mobile-First)
+         ======================================================================== -->
+        <section class="section cost-calc-section" id="cost-estimator" aria-labelledby="calc-title">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <span class="section-pill">100% Transparent Pricing</span>
+                    <h2 id="calc-title" class="section-title">Instant Cost &amp; 0% EMI Estimator</h2>
+                    <p class="section-subtitle">
+                        Select your treatment to view transparent procedure cost estimates, no-cost monthly EMI options,
+                        and included lifetime guarantees.
+                    </p>
+                </div>
+
+                <div class="calc-card animate-on-scroll">
+                    <!-- Service Selector Tabs (Touch-Friendly) -->
+                    <div class="calc-tabs-bar" role="tablist" aria-label="Select Treatment to Estimate">
+                        <button type="button" class="calc-tab-btn is-active" data-calc-service="implants" role="tab" aria-selected="true">
+                            <span class="calc-tab-emoji">🦷</span>
+                            <span class="calc-tab-text">Dental Implants</span>
+                        </button>
+                        <button type="button" class="calc-tab-btn" data-calc-service="rct" role="tab" aria-selected="false">
+                            <span class="calc-tab-emoji">🔬</span>
+                            <span class="calc-tab-text">Root Canal (RCT)</span>
+                        </button>
+                        <button type="button" class="calc-tab-btn" data-calc-service="invisalign" role="tab" aria-selected="false">
+                            <span class="calc-tab-emoji">✨</span>
+                            <span class="calc-tab-text">Clear Aligners</span>
+                        </button>
+                        <button type="button" class="calc-tab-btn" data-calc-service="whitening" role="tab" aria-selected="false">
+                            <span class="calc-tab-emoji">💎</span>
+                            <span class="calc-tab-text">Laser Whitening</span>
+                        </button>
+                        <button type="button" class="calc-tab-btn" data-calc-service="crowns" role="tab" aria-selected="false">
+                            <span class="calc-tab-emoji">👑</span>
+                            <span class="calc-tab-text">Zirconia Crowns</span>
+                        </button>
+                    </div>
+
+                    <!-- Calculator Dynamic Interactive Body -->
+                    <div class="calc-body-grid">
+                        <!-- Left: Controls -->
+                        <div class="calc-controls">
+                            <!-- Implants Options -->
+                            <div class="calc-option-group is-active" id="calc-group-implants">
+                                <label class="calc-control-label">Number of Teeth to Replace:</label>
+                                <div class="calc-pill-selector" id="calc-implant-teeth">
+                                    <button type="button" class="calc-pill is-active" data-val="1">1 Tooth</button>
+                                    <button type="button" class="calc-pill" data-val="2">2 Teeth</button>
+                                    <button type="button" class="calc-pill" data-val="3">3 Teeth</button>
+                                    <button type="button" class="calc-pill" data-val="full">Full Arch (4+)</button>
+                                </div>
+
+                                <label class="calc-control-label" style="margin-top: 1rem;">Implant System &amp; Warranty:</label>
+                                <div class="calc-pill-selector" id="calc-implant-tier">
+                                    <button type="button" class="calc-pill is-active" data-val="standard">Swiss Titanium (15-Yr Warranty)</button>
+                                    <button type="button" class="calc-pill" data-val="premium">German Zirconia (Lifetime Warranty)</button>
+                                </div>
+                            </div>
+
+                            <!-- RCT Options -->
+                            <div class="calc-option-group" id="calc-group-rct" style="display: none;">
+                                <label class="calc-control-label">Tooth Location:</label>
+                                <div class="calc-pill-selector" id="calc-rct-location">
+                                    <button type="button" class="calc-pill is-active" data-val="front">Front Tooth (Incisor / Canine)</button>
+                                    <button type="button" class="calc-pill" data-val="back">Back Molar / Premolar</button>
+                                </div>
+
+                                <label class="calc-control-label" style="margin-top: 1rem;">Procedure Protocol:</label>
+                                <div class="calc-pill-selector" id="calc-rct-type">
+                                    <button type="button" class="calc-pill is-active" data-val="standard">Single-Sitting Digital RCT</button>
+                                    <button type="button" class="calc-pill" data-val="laser">Laser Microscopic RCT + Bio-Seal</button>
+                                </div>
+                            </div>
+
+                            <!-- Aligners Options -->
+                            <div class="calc-option-group" id="calc-group-invisalign" style="display: none;">
+                                <label class="calc-control-label">Smile Alignment Complexity:</label>
+                                <div class="calc-pill-selector" id="calc-aligner-tier">
+                                    <button type="button" class="calc-pill is-active" data-val="mild">Mild Spacing / Gap (4-6 Mos)</button>
+                                    <button type="button" class="calc-pill" data-val="moderate">Moderate Crowding (8-12 Mos)</button>
+                                    <button type="button" class="calc-pill" data-val="full">Comprehensive Full-Mouth</button>
+                                </div>
+                            </div>
+
+                            <!-- Whitening Options -->
+                            <div class="calc-option-group" id="calc-group-whitening" style="display: none;">
+                                <label class="calc-control-label">Whitening Package:</label>
+                                <div class="calc-pill-selector" id="calc-whitening-tier">
+                                    <button type="button" class="calc-pill is-active" data-val="express">Express Clinic Glow (1-Hour Session)</button>
+                                    <button type="button" class="calc-pill" data-val="deep">Deep Stain Laser Treatment + Home Kit</button>
+                                </div>
+                            </div>
+
+                            <!-- Crowns Options -->
+                            <div class="calc-option-group" id="calc-group-crowns" style="display: none;">
+                                <label class="calc-control-label">Crown Material:</label>
+                                <div class="calc-pill-selector" id="calc-crown-tier">
+                                    <button type="button" class="calc-pill is-active" data-val="metal-free">CAD/CAM Metal-Free Zirconia</button>
+                                    <button type="button" class="calc-pill" data-val="emax">E-Max Ultra-Translucent Aesthetic</button>
+                                </div>
+                            </div>
+
+                            <!-- Trust highlights list -->
+                            <div class="calc-perks-list">
+                                <div class="calc-perk-item">
+                                    <span class="calc-perk-check">✓</span>
+                                    <span>High-Definition 3D Intraoral Scan Included (Worth ₹1,500)</span>
+                                </div>
+                                <div class="calc-perk-item">
+                                    <span class="calc-perk-check">✓</span>
+                                    <span>Detailed Treatment Plan with Fixed Cost Before Starting</span>
+                                </div>
+                                <div class="calc-perk-item">
+                                    <span class="calc-perk-check">✓</span>
+                                    <span>0% Interest Easy EMI on All Major Credit &amp; Debit Cards</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Live Result Card -->
+                        <div class="calc-result-box">
+                            <span class="calc-result-badge">Transparent Estimate</span>
+                            <div class="calc-price-wrap">
+                                <span class="calc-currency">₹</span>
+                                <span class="calc-amount" id="calc-amount">22,000</span>
+                                <span class="calc-period" id="calc-period">/ tooth</span>
+                            </div>
+                            <div class="calc-emi-badge">
+                                <span class="emi-icon">⚡</span>
+                                <span>0% EMI: <strong id="calc-emi">₹1,833/mo</strong> (12 Months)</span>
+                            </div>
+                            <p class="calc-notice">
+                                Zero hidden costs. See your exact 3D plan &amp; final estimate at your complimentary consultation.
+                            </p>
+                            <button type="button" class="btn btn-cta btn-block" id="btn-calc-book" data-scroll-to-form>
+                                Lock This Estimate &amp; Book Free Visit
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -880,6 +1159,17 @@
                         </div>
                     </div>
 
+                </div>
+
+                <!-- Instant 1-Tap Compare Button for Mobile -->
+                <div class="ba-toggle-wrap">
+                    <button type="button" class="btn btn-outline btn-sm ba-instant-toggle" id="ba-instant-toggle" aria-label="Tap to toggle before and after view">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                        <span>Tap to Toggle Before / After</span>
+                    </button>
                 </div>
 
                 <p class="ba-caption" id="ba-case-title">Case 1: Full Arch Implant Restoration (Patient Age 52)</p>
@@ -1390,6 +1680,21 @@
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
     </button>
+
+    <!-- Live Activity / Social Proof Floating Ticker (Discreet & Mobile-Friendly) -->
+    <div id="social-proof-ticker" class="social-proof-ticker" aria-live="polite">
+        <div class="ticker-inner">
+            <div class="ticker-icon-box">
+                <span class="ticker-pulse-dot" aria-hidden="true"></span>
+                <span class="ticker-emoji" aria-hidden="true">⚡</span>
+            </div>
+            <div class="ticker-text-wrap">
+                <p class="ticker-main" id="ticker-main">Ananya S. from Salt Lake booked a consultation</p>
+                <p class="ticker-meta" id="ticker-meta">4 minutes ago • Phoolbagan Clinic</p>
+            </div>
+            <button type="button" class="ticker-close-btn" id="ticker-close" aria-label="Dismiss notification">&times;</button>
+        </div>
+    </div>
 
     <!-- Exit-Intent / 40s Fallback Consultation Modal -->
     <div class="modal-overlay" id="exit-modal" role="dialog" aria-modal="true" aria-labelledby="modal-heading">

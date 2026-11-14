@@ -904,6 +904,12 @@ button {
     margin-top: 1px;
 }
 
+.form-error-msg a {
+    color: var(--primary);
+    text-decoration: underline;
+    font-weight: 600;
+}
+
 .form-error-msg:empty {
     display: none;
 }
@@ -2293,4 +2299,820 @@ button {
 .animate-on-scroll.is-revealed {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ==========================================================================
+   21. Dynamic Mobile-First Components & Interactive Widgets
+   ========================================================================== */
+
+/* 21.1 Interactive Branch Selector Segment */
+.branch-segment {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2);
+    background: var(--surface-alt);
+    padding: 4px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-light);
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-2);
+}
+
+.branch-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.5rem 0.65rem;
+    background: transparent;
+    border: 1.5px solid transparent;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    text-align: left;
+    transition: all var(--transition-fast);
+    font-family: var(--font-body);
+}
+
+.branch-pill.is-active {
+    background: var(--surface);
+    border-color: var(--primary);
+    box-shadow: 0 2px 8px rgba(0, 150, 166, 0.15);
+}
+
+.branch-pill-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #cbd5e1;
+    flex-shrink: 0;
+    transition: all var(--transition-fast);
+}
+
+.branch-pill.is-active .branch-pill-dot {
+    background: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 150, 166, 0.25);
+}
+
+.branch-pill-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.branch-pill-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--primary-dark);
+    line-height: 1.15;
+}
+
+.branch-pill-sub {
+    font-size: 0.625rem;
+    color: var(--text-muted);
+    line-height: 1.2;
+}
+
+/* 21.2 Quick Date Strip (Horizontal Touch Carousel) */
+.date-picker-group {
+    position: relative;
+}
+
+.date-header-row,
+.slot-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.date-picker-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 2px 7px;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.date-picker-trigger:hover {
+    background: #d4f0f4;
+}
+
+.date-input-hidden,
+.slot-select-hidden {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+    width: 0;
+}
+
+.quick-dates-scroll {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 2px 2px 6px 2px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.quick-dates-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.quick-date-chip {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 54px;
+    padding: 6px 8px;
+    background: var(--surface-alt);
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-family: var(--font-body);
+}
+
+.quick-date-chip:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+}
+
+.quick-date-chip.is-active {
+    background: var(--primary-gradient);
+    border-color: var(--primary);
+    color: var(--text-inverse);
+    box-shadow: 0 3px 10px rgba(0, 150, 166, 0.3);
+}
+
+.quick-date-day {
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+}
+
+.quick-date-num {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+    line-height: 1.1;
+    margin: 2px 0;
+}
+
+.quick-date-month {
+    font-size: 0.6rem;
+    color: var(--text-subtle);
+}
+
+.quick-date-chip.is-active .quick-date-day,
+.quick-date-chip.is-active .quick-date-num,
+.quick-date-chip.is-active .quick-date-month {
+    color: #ffffff;
+}
+
+/* 21.3 Interactive Time Slot Chips Grid */
+.slot-live-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.slot-live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--success);
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+}
+
+.slot-chips-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-top: 4px;
+}
+
+@media (max-width: 480px) {
+    .slot-chips-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+    }
+}
+
+.slot-chip {
+    padding: 7px 6px;
+    background: var(--surface);
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-align: center;
+    line-height: 1.1;
+}
+
+.slot-chip:hover:not(:disabled) {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    color: var(--primary-dark);
+}
+
+.slot-chip.is-selected {
+    background: var(--primary-light);
+    border-color: var(--primary);
+    color: var(--primary-dark);
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(0, 150, 166, 0.2);
+}
+
+.slot-chip.is-booked {
+    background: #f1f5f9;
+    color: #94a3b8;
+    border-color: #e2e8f0;
+    cursor: not-allowed;
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.slot-chip-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--success);
+    flex-shrink: 0;
+}
+
+.slot-chip.is-booked .slot-chip-dot {
+    background: #cbd5e1;
+}
+
+/* 21.4 Quick Dental Concern Chips */
+.concern-input-group {
+    margin-bottom: var(--space-3);
+}
+
+.quick-concerns-box {
+    margin-bottom: 6px;
+}
+
+.quick-concerns-label {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.quick-concerns-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.concern-pill {
+    background: var(--surface-alt);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-full);
+    padding: 3px 8px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.concern-pill:hover,
+.concern-pill.is-active {
+    background: var(--primary-light);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* 21.5 Interactive Symptom & Guidance Banner (Section 3b) */
+.symptom-section {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+    background: var(--surface);
+}
+
+.symptom-card {
+    background: linear-gradient(135deg, #f0fdfa 0%, #ffffff 50%, #f8fafc 100%);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8) var(--space-6);
+    box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 600px) {
+    .symptom-card {
+        padding: var(--space-6) var(--space-4);
+        border-radius: var(--radius-lg);
+    }
+}
+
+.symptom-header {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto var(--space-6) auto;
+}
+
+.symptom-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    color: var(--primary-dark);
+    line-height: 1.25;
+    margin-bottom: var(--space-2);
+}
+
+.symptom-desc {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.symptom-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+}
+
+@media (max-width: 768px) {
+    .symptom-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+    }
+}
+
+.symptom-tile {
+    background: var(--surface);
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.symptom-tile:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.symptom-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.symptom-icon-red { background: #fee2e2; }
+.symptom-icon-teal { background: #ccfbf1; }
+.symptom-icon-purple { background: #ede9fe; }
+.symptom-icon-amber { background: #fef3c7; }
+
+.symptom-content {
+    flex: 1;
+}
+
+.symptom-tile-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: var(--text-base);
+    color: var(--primary-dark);
+    margin-bottom: 2px;
+}
+
+.symptom-recom {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+
+.symptom-recom strong {
+    color: var(--primary);
+}
+
+.symptom-meta {
+    font-size: 0.72rem;
+    color: var(--text-subtle);
+    margin-top: 2px;
+}
+
+.symptom-arrow {
+    font-size: 1.15rem;
+    color: var(--primary);
+    font-weight: 800;
+    transition: transform var(--transition-fast);
+}
+
+.symptom-tile:hover .symptom-arrow {
+    transform: translateX(4px);
+}
+
+/* 21.6 Treatment Category Filter Bar (Section 4) */
+.treatment-filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: var(--space-8);
+    overflow-x: auto;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.treatment-filter-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.treatment-filter-btn {
+    background: var(--surface);
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-full);
+    padding: 0.5rem 1.1rem;
+    font-family: var(--font-heading);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all var(--transition-fast);
+}
+
+.treatment-filter-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary-dark);
+    background: var(--primary-light);
+}
+
+.treatment-filter-btn.is-active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--text-inverse);
+    box-shadow: 0 4px 12px rgba(0, 150, 166, 0.3);
+}
+
+.treatment-card.is-hidden {
+    display: none !important;
+}
+
+/* 21.7 Interactive Cost & EMI Estimator (Section 4b) */
+.cost-calc-section {
+    background: var(--surface-alt);
+}
+
+.calc-card {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 600px) {
+    .calc-card {
+        padding: var(--space-5) var(--space-4);
+        border-radius: var(--radius-lg);
+    }
+}
+
+.calc-tabs-bar {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--border-light);
+    margin-bottom: var(--space-6);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.calc-tabs-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.calc-tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.6rem 1rem;
+    background: var(--surface-alt);
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-md);
+    font-family: var(--font-heading);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--text-main);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all var(--transition-fast);
+}
+
+.calc-tab-btn:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+}
+
+.calc-tab-btn.is-active {
+    background: var(--primary-gradient);
+    border-color: var(--primary);
+    color: var(--text-inverse);
+    box-shadow: 0 4px 12px rgba(0, 150, 166, 0.3);
+}
+
+.calc-tab-emoji {
+    font-size: 1rem;
+}
+
+.calc-body-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.9fr;
+    gap: var(--space-8);
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .calc-body-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+}
+
+.calc-control-label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: var(--space-2);
+}
+
+.calc-pill-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.calc-pill {
+    padding: 0.5rem 0.9rem;
+    background: var(--surface-alt);
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-md);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.calc-pill:hover {
+    border-color: var(--primary);
+}
+
+.calc-pill.is-active {
+    background: var(--primary-light);
+    border-color: var(--primary);
+    color: var(--primary-dark);
+    font-weight: 700;
+    box-shadow: 0 2px 6px rgba(0, 150, 166, 0.15);
+}
+
+.calc-perks-list {
+    margin-top: var(--space-6);
+    padding-top: var(--space-4);
+    border-top: 1px dashed var(--border-light);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.calc-perk-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+
+.calc-perk-check {
+    color: var(--success);
+    font-weight: 800;
+    font-size: 0.95rem;
+}
+
+.calc-result-box {
+    background: linear-gradient(145deg, #f0f9fb 0%, #ffffff 100%);
+    border: 2px solid var(--primary-light);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: 90px;
+}
+
+.calc-result-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-3);
+}
+
+.calc-price-wrap {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 2px;
+    margin-bottom: var(--space-2);
+}
+
+.calc-currency {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+}
+
+.calc-amount {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+    line-height: 1;
+}
+
+.calc-period {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    margin-left: 4px;
+}
+
+.calc-emi-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #fef3c7;
+    color: #92400e;
+    padding: 5px 12px;
+    border-radius: var(--radius-full);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    margin-bottom: var(--space-4);
+}
+
+.calc-notice {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin-bottom: var(--space-5);
+}
+
+/* 21.8 Instant Compare Button (Section 7) */
+.ba-toggle-wrap {
+    text-align: center;
+    margin-top: var(--space-4);
+}
+
+.ba-instant-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* 21.9 Live Social Proof Floating Ticker */
+.social-proof-ticker {
+    position: fixed;
+    bottom: 84px;
+    left: 20px;
+    z-index: 97;
+    max-width: 330px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 24px rgba(10, 47, 61, 0.14);
+    animation: tickerSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+@media (max-width: 768px) {
+    .social-proof-ticker {
+        bottom: 74px;
+        left: 12px;
+        right: auto;
+        max-width: 290px;
+    }
+}
+
+.ticker-inner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    position: relative;
+}
+
+.ticker-icon-box {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.ticker-pulse-dot {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--success);
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+}
+
+.ticker-emoji {
+    font-size: 1.1rem;
+}
+
+.ticker-text-wrap {
+    flex: 1;
+    min-width: 0;
+}
+
+.ticker-main {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    line-height: 1.25;
+    margin: 0;
+    white-space: normal;
+}
+
+.ticker-meta {
+    font-size: 0.65rem;
+    color: var(--text-subtle);
+    margin-top: 2px;
+}
+
+.ticker-close-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-subtle);
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+}
+
+.ticker-close-btn:hover {
+    color: var(--text-main);
+}
+
+@keyframes tickerSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
