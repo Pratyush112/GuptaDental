@@ -20,11 +20,11 @@
       source: 'Google Reviews'
     },
     contact: {
-      phoneDisplay: '+91 90385 95251',
-      phoneTel: '+919038595251',
-      whatsappDisplay: '+91 90385 95251',
-      whatsappLink: 'https://wa.me/919038595251?text=Hi%20Gupta%27s%20Dental%2C%20I%20would%20like%20to%20book%20a%20consultation',
-      email: 'care@guptasdental.in'
+      phoneDisplay: '+91 81010 14751',
+      phoneTel: '+918101014751',
+      whatsappDisplay: '+91 81010 14751',
+      whatsappLink: 'https://wa.me/918101014751?text=Hi%20Gupta%27s%20Dental%2C%20I%20would%20like%20to%20book%20a%20consultation',
+      email: 'prasaha018@gmail.com'
     },
     branches: [
       {
@@ -33,8 +33,8 @@
         address: 'P-87, CIT Road, near Phoolbagan Police Station, Phool Bagan, Kolkata 700054',
         timings: 'Open all 7 days: 10:00 AM - 9:00 PM',
         parking: 'Patient parking available',
-        phone: '+91 90385 95251',
-        phoneTel: '+919038595251',
+        phone: '+91 81010 14751',
+        phoneTel: '+918101014751',
         mapQuery: 'P-87,+CIT+Road,+near+Phoolbagan+Police+Station,+Phool+Bagan,+Kolkata+700054',
         mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.095493902347!2d88.390544!3d22.575677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027663242ea395%3A0xc3f87b8f9e61298c!2sPhoolbagan%2C%20Kolkata%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin'
       },
@@ -44,8 +44,8 @@
         address: '122/1D, South Sinthee Road, 50ft Road, Seven Tanks Welfare Association, South Dum Dum, Kolkata 700030',
         timings: 'Open 6 days: 10:00 AM - 9:00 PM (Closed Thursday)',
         parking: 'Street and association visitor parking available',
-        phone: '+91 84200 22591',
-        phoneTel: '+918420022591',
+        phone: '+91 81010 14751',
+        phoneTel: '+918101014751',
         mapQuery: '122/1D,+South+Sinthee+Road,+Seven+Tanks,+South+Dum+Dum,+Kolkata+700030',
         mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3682.261276274411!2d88.384218!3d22.625349!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89df464973307%3A0x6b4fb6c173c333!2sSouth%20Dum%20Dum%2C%20Kolkata!5e0!3m2!1sen!2sin!4v1700000000001!5m2!1sen!2sin'
       }
@@ -605,7 +605,28 @@
       // Track submission via dataLayer stub
       trackEvent('consultation_booking_submit', formData);
 
-      // Simulated network call (replaceable with real fetch('/api/book', {...}))
+      // Send email notification to clinic email (prasaha018@gmail.com)
+      try {
+        fetch('https://formsubmit.co/ajax/prasaha018@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            _subject: `New Dental Consultation: ${formData.name} (${formData.treatmentName})`,
+            'Patient Name': formData.name,
+            'Phone Number': `+91 ${formData.phone}`,
+            'Treatment': formData.treatmentName,
+            'Clinic Branch': formData.branchName,
+            'Preferred Date': formData.date,
+            'Time Slot': formData.slot,
+            'Patient Note': formData.message || 'None'
+          })
+        }).catch(err => console.log('Email delivery background note:', err));
+      } catch (e) {}
+
+      // Network call & UI transition
       setTimeout(() => {
         // Reset button
         submitBtn.disabled = false;
@@ -618,13 +639,28 @@
         document.getElementById('summary-branch').textContent = formData.branchName;
         document.getElementById('summary-date').textContent = `${formData.date} (${formData.slot})`;
 
+        // Configure 1-Tap WhatsApp confirmation button
+        const waConfirmBtn = document.getElementById('btn-whatsapp-confirm');
+        if (waConfirmBtn) {
+          const waMessage = encodeURIComponent(
+            `Hi Gupta's Dental, I just booked a consultation on your website:\n` +
+            `• Patient: ${formData.name}\n` +
+            `• Phone: +91 ${formData.phone}\n` +
+            `• Treatment: ${formData.treatmentName}\n` +
+            `• Branch: ${formData.branchName}\n` +
+            `• Date & Slot: ${formData.date} (${formData.slot})\n` +
+            (formData.message ? `• Note: ${formData.message}` : '')
+          );
+          waConfirmBtn.href = `https://wa.me/918101014751?text=${waMessage}`;
+        }
+
         // Hide form, show success state
         form.style.display = 'none';
         if (successCard) {
           successCard.classList.add('is-active');
           successCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-      }, 1100);
+      }, 1000);
     });
 
     // Reset button to allow another booking
