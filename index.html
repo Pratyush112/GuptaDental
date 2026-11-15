@@ -415,8 +415,9 @@
                                     <div class="form-error-msg" id="error-date" role="alert"></div>
                                 </div>
 
-                                <!-- Available Time Window (Visual Touch Chips + Select) -->
-                                <div class="form-group slot-picker-group">
+                                <!-- Available Time Window (Visual Touch Chips + Select) - Commented Out -->
+                                <input type="hidden" id="form-slot" name="slot" value="Flexible (Clinic will coordinate)">
+                                <!-- <div class="form-group slot-picker-group">
                                     <div class="slot-header-row">
                                         <label for="form-slot" class="form-label">
                                             Available Time Window
@@ -426,15 +427,12 @@
                                         </span>
                                     </div>
                                     <select id="form-slot" class="form-control slot-select-hidden">
-                                        <!-- Synchronized for API submission -->
                                     </select>
-                                    <!-- Dynamic Interactive Slot Chips Grid -->
                                     <div class="slot-chips-grid" id="slot-chips-grid" role="radiogroup"
                                         aria-label="Select Time Slot">
-                                        <!-- Populated dynamically via script.js -->
                                     </div>
                                     <div class="form-error-msg" id="error-slot" role="alert"></div>
-                                </div>
+                                </div> -->
 
                                 <!-- Row 4: Quick Concern Tags & Optional Note -->
                                 <div class="form-group concern-input-group">
@@ -459,9 +457,7 @@
                                         placeholder="Any dental concern or question? (Optional)">
                                 </div>
 
-                                <div class="form-error-msg" id="error-form" role="alert"
-                                    style="margin-bottom: var(--space-2); text-align: center; font-size: 0.75rem;">
-                                </div>
+                                <div class="form-error-msg" id="error-form" role="alert"></div>
 
                                 <!-- Submit Button -->
                                 <button type="submit" id="form-submit-btn" class="btn btn-cta btn-block">
@@ -1205,20 +1201,20 @@
                     aria-label="Interactive Before and After Image Comparison">
 
                     <!-- After Image (Base) -->
-                    <!-- PLACEHOLDER: Comparison Image After -->
                     <div class="ba-image-wrapper ba-after-wrapper">
                         <img id="ba-img-after"
-                            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'><rect width='800' height='500' fill='%230b4252'/><text x='400' y='240' font-family='sans-serif' font-size='28' font-weight='bold' fill='%23ffffff' text-anchor='middle'>AFTER: Permanent Zirconia Implants</text><text x='400' y='280' font-family='sans-serif' font-size='18' fill='%236ee7b7' text-anchor='middle'>100% natural bite restored, lifetime warranty</text></svg>"
-                            alt="After treatment clinical smile result">
+                            src="images/case-implants-after.jpg"
+                            alt="After treatment permanent zirconia dental implant clinical result"
+                            loading="lazy">
                         <span class="ba-badge ba-badge-after">After Treatment</span>
                     </div>
 
                     <!-- Before Image (Clipped Overlay) -->
-                    <!-- PLACEHOLDER: Comparison Image Before -->
                     <div class="ba-image-wrapper ba-before-wrapper" id="ba-before-wrap">
                         <img id="ba-img-before"
-                            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'><rect width='800' height='500' fill='%232b353b'/><text x='400' y='240' font-family='sans-serif' font-size='28' font-weight='bold' fill='%23e2e8f0' text-anchor='middle'>BEFORE: Missing Molar &amp; Severe Bone Loss</text><text x='400' y='280' font-family='sans-serif' font-size='18' fill='%2394a3b8' text-anchor='middle'>Chewing difficulty &amp; collapsed bite</text></svg>"
-                            alt="Before treatment clinical smile condition">
+                            src="images/case-implants-before.jpg"
+                            alt="Before treatment missing premolar tooth clinical condition"
+                            loading="lazy">
                         <span class="ba-badge ba-badge-before">Before Treatment</span>
                     </div>
 

@@ -1018,7 +1018,7 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
 
     // Populate static slots from CLINIC_CONFIG.timeSlots (fallback)
     function populateStaticSlots(preserveSelection = false) {
-      if (!slotInput) return;
+      if (!slotInput || slotInput.tagName !== 'SELECT') return;
       const prevVal = slotInput.value;
       slotInput.innerHTML = '';
       CLINIC_CONFIG.timeSlots.forEach(slot => {
@@ -1041,7 +1041,7 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
 
     // Live slot availability check
     async function fetchSlots() {
-      if (!branchInput || !dateInput || !slotInput) return;
+      if (!branchInput || !dateInput || !slotInput || slotInput.tagName !== 'SELECT') return;
 
       const branchName = branchInput.value;
       const dateVal = dateInput.value;
@@ -1476,7 +1476,7 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
         doctor: selectedDoctor,
         branch: branchInput.value,
         date: dateInput.value,
-        slot: slotInput.value || '10:00 AM',
+        slot: (slotInput && slotInput.value) ? slotInput.value : 'Flexible (Clinic will coordinate)',
         message: messageInput ? messageInput.value.trim() : ''
       };
 
@@ -1896,13 +1896,14 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
       // Clamp between 5% and 95%
       const clamped = Math.max(5, Math.min(percentage, 95));
       if (animate) {
-        beforeWrapper.style.transition = 'width 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
+        beforeWrapper.style.transition = 'width 0.35s cubic-bezier(0.16, 1, 0.3, 1), clip-path 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
         handle.style.transition = 'left 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
         setTimeout(() => {
           beforeWrapper.style.transition = '';
           handle.style.transition = '';
         }, 360);
       }
+      container.style.setProperty('--ba-pos', clamped + '%');
       beforeWrapper.style.width = clamped + '%';
       handle.style.left = clamped + '%';
       handle.setAttribute('aria-valuenow', Math.round(clamped));
@@ -1985,22 +1986,22 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
     const afterImg = document.getElementById('ba-img-after');
     const caseTitle = document.getElementById('ba-case-title');
 
-    /* PLACEHOLDER: Clean SVG illustrations for 3 patient cases */
+    /* Clinical dental before-and-after smile transformation cases */
     const CASES_DATA = {
       implants: {
-        title: 'Case 1: Full Arch Implant Restoration (Patient Age 52)',
-        before: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500"><rect width="800" height="500" fill="%232b353b"/><text x="400" y="240" font-family="sans-serif" font-size="28" font-weight="bold" fill="%23e2e8f0" text-anchor="middle">BEFORE: Missing Molar &amp; Severe Bone Loss</text><text x="400" y="280" font-family="sans-serif" font-size="18" fill="%2394a3b8" text-anchor="middle">Chewing difficulty &amp; collapsed bite</text></svg>',
-        after: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500"><rect width="800" height="500" fill="%230b4252"/><text x="400" y="240" font-family="sans-serif" font-size="28" font-weight="bold" fill="%23ffffff" text-anchor="middle">AFTER: Permanent Zirconia Implants</text><text x="400" y="280" font-family="sans-serif" font-size="18" fill="%236ee7b7" text-anchor="middle">100% natural bite restored, lifetime warranty</text></svg>'
+        title: 'Case 1: Permanent Zirconia Implant Restoration (Patient Age 52)',
+        before: 'images/case-implants-before.jpg',
+        after: 'images/case-implants-after.jpg'
       },
       invisalign: {
-        title: 'Case 2: Invisalign Clear Aligners (11 Months Treatment)',
-        before: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500"><rect width="800" height="500" fill="%232e2c38"/><text x="400" y="240" font-family="sans-serif" font-size="28" font-weight="bold" fill="%23e2e8f0" text-anchor="middle">BEFORE: Severe Crowding &amp; Crossbite</text><text x="400" y="280" font-family="sans-serif" font-size="18" fill="%2394a3b8" text-anchor="middle">Uneven smile line and speech discomfort</text></svg>',
-        after: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500"><rect width="800" height="500" fill="%230e464c"/><text x="400" y="240" font-family="sans-serif" font-size="28" font-weight="bold" fill="%23ffffff" text-anchor="middle">AFTER: Flawlessly Aligned Natural Arch</text><text x="400" y="280" font-family="sans-serif" font-size="18" fill="%236ee7b7" text-anchor="middle">Discreet aligners, zero metal brackets</text></svg>'
+        title: 'Case 2: Invisalign Clear Aligners (11 Months Alignment)',
+        before: 'images/case-invisalign-before.jpg',
+        after: 'images/case-invisalign-after.jpg'
       },
       whitening: {
-        title: 'Case 3: Laser Whitening + Composite Veneers (Single Session)',
-        before: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500"><rect width="800" height="500" fill="%233a3528"/><text x="400" y="240" font-family="sans-serif" font-size="28" font-weight="bold" fill="%23e2e8f0" text-anchor="middle">BEFORE: Tea/Coffee Stains &amp; Micro-Chips</text><text x="400" y="280" font-family="sans-serif" font-size="18" fill="%23d4d4d8" text-anchor="middle">Discolored shade A3.5 with dull finish</text></svg>',
-        after: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500"><rect width="800" height="500" fill="%230c4554"/><text x="400" y="240" font-family="sans-serif" font-size="28" font-weight="bold" fill="%23ffffff" text-anchor="middle">AFTER: 8 Shades Brighter (Shade B1)</text><text x="400" y="280" font-family="sans-serif" font-size="18" fill="%236ee7b7" text-anchor="middle">Enamel-safe laser, sparkling radiant smile</text></svg>'
+        title: 'Case 3: Laser Whitening & Cosmetic Polish (Single Session)',
+        before: 'images/case-whitening-before.jpg',
+        after: 'images/case-whitening-after.jpg'
       }
     };
 
