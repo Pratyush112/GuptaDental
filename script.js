@@ -322,13 +322,16 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
     // Populate branch select dropdown (value is branch NAME)
     const branchSelect = document.getElementById('form-branch');
     if (branchSelect && branchSelect.options.length <= 1) {
-      CLINIC_CONFIG.branches.forEach(b => {
+      branchSelect.innerHTML = '';
+      CLINIC_CONFIG.branches.forEach((b, idx) => {
         const opt = document.createElement('option');
         opt.value = b.name;
         opt.dataset.id = b.id;
         opt.textContent = b.name;
+        if (idx === 0) opt.selected = true;
         branchSelect.appendChild(opt);
       });
+      branchSelect.value = CLINIC_CONFIG.branches[0].name;
     }
 
     // Populate time slot select dropdown or chips from CLINIC_CONFIG.timeSlots
@@ -1281,15 +1284,12 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
       fetchSlots();
     });
 
-    // Initial slot setup
-    if (branchInput.value && dateInput.value) {
-      fetchSlots();
-    } else {
-      populateStaticSlots();
-    }
-
     // 1. Branch Segment Pills (Mobile-First Touch Selector)
     const branchSegment = document.getElementById('branch-segment');
+    if (branchInput && !branchInput.value) {
+      branchInput.value = CLINIC_CONFIG.branches[0].name;
+    }
+
     if (branchSegment && branchInput) {
       const pills = branchSegment.querySelectorAll('.branch-pill');
 
@@ -1310,6 +1310,7 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
           branchInput.value = val;
           syncBranchPills(val);
           validateBranch();
+          if (submitBtn) submitBtn.disabled = false;
           fetchSlots();
           updateDoctorSelect(true);
         });
@@ -1319,9 +1320,14 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
         syncBranchPills(branchInput.value);
       });
 
-      if (branchInput.value) {
-        syncBranchPills(branchInput.value);
-      }
+      syncBranchPills(branchInput.value);
+    }
+
+    // Initial slot setup
+    if (branchInput.value && dateInput.value) {
+      fetchSlots();
+    } else {
+      populateStaticSlots();
     }
 
     // 2. Dynamic 7-Day Mobile Quick Date Strip
@@ -1371,6 +1377,7 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
           dateInput.value = isoDate;
           syncDateChips(isoDate);
           validateDate();
+          if (submitBtn) submitBtn.disabled = false;
           fetchSlots();
         });
 
@@ -1448,6 +1455,13 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
       const isDateValid = validateDate();
 
       if (!isNameValid || !isPhoneValid || !isTreatmentValid || !isBranchValid || !isDateValid) {
+        const missingFields = [];
+        if (!isNameValid) missingFields.push('Full Name (min 2 letters)');
+        if (!isPhoneValid) missingFields.push('10-digit Mobile Number');
+        if (!isTreatmentValid) missingFields.push('Treatment / Speciality');
+        if (!isBranchValid) missingFields.push('Clinic Branch');
+        if (!isDateValid) missingFields.push('Preferred Date');
+        setFormError('Please complete required fields: ' + missingFields.join(', '));
         form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         return;
       }
@@ -1491,7 +1505,14 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
           body: JSON.stringify(payload)
         });
 
-        const result = await res.json();
+        let result;
+        const rawText = await res.text();
+        try {
+          result = JSON.parse(rawText);
+        } catch (jsonErr) {
+          console.error('Apps Script response was not valid JSON:', rawText);
+          throw new Error('Google Apps Script returned an unexpected response. Please ensure "Who has access" is set to "Anyone" in Web App deployment.');
+        }
 
         if (result && result.ok) {
           // Re-enable button
@@ -1554,8 +1575,11 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
         console.error('Booking submission network error:', netErr);
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnHtml;
+        const isAuthOrCors = netErr.message && netErr.message.includes('Apps Script');
         setFormError(
-          `Couldn't reach the server. Please try again or <a href="${CLINIC_CONFIG.contact.whatsappLink}" target="_blank" rel="noopener noreferrer">contact us on WhatsApp</a>.`,
+          isAuthOrCors
+            ? `Google Apps Script config notice: ${netErr.message} You can also <a href="${CLINIC_CONFIG.contact.whatsappLink}" target="_blank" rel="noopener noreferrer"><strong>Book instantly on WhatsApp (+91 81010 14751)</strong></a>.`
+            : `Couldn't reach the server. Please try again or <a href="${CLINIC_CONFIG.contact.whatsappLink}" target="_blank" rel="noopener noreferrer">contact us on WhatsApp</a>.`,
           true
         );
       }
