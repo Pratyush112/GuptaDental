@@ -1730,6 +1730,158 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
   }
 
   /* ==========================================================================
+     7c. Doctors Carousel Slider (Slideable, Touch Swipe, Arrows, Dots, Counter)
+     ========================================================================== */
+  function initDoctorsSlider() {
+    const track = document.getElementById('doctors-track');
+    if (!track) return;
+
+    const cards = track.querySelectorAll('.doctor-card');
+    if (cards.length === 0) return;
+
+    const prevBtn = document.getElementById('doctors-prev');
+    const nextBtn = document.getElementById('doctors-next');
+    const prevBtnMobile = document.getElementById('doctors-prev-mobile');
+    const nextBtnMobile = document.getElementById('doctors-next-mobile');
+    const dotsContainer = document.getElementById('doctors-dots');
+    const counterEl = document.getElementById('doctors-counter');
+
+    const totalCards = cards.length;
+
+    // Helper: calculate step (width of one card + gap)
+    function getStep() {
+      if (cards.length > 1) {
+        const first = cards[0].getBoundingClientRect();
+        const second = cards[1].getBoundingClientRect();
+        const diff = Math.round(second.left - first.left);
+        if (diff > 0) return diff;
+      }
+      return cards[0].offsetWidth + 24;
+    }
+
+    // Build pagination dots
+    if (dotsContainer) {
+      dotsContainer.innerHTML = '';
+      cards.forEach((card, idx) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'carousel-dot' + (idx === 0 ? ' is-active' : '');
+        dot.setAttribute('aria-label', `View Doctor ${idx + 1} of ${totalCards}`);
+        dot.addEventListener('click', () => {
+          scrollToIndex(idx);
+        });
+        dotsContainer.appendChild(dot);
+      });
+    }
+
+    // Scroll to specific card index
+    function scrollToIndex(idx) {
+      const step = getStep();
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      const targetLeft = Math.min(idx * step, maxScroll);
+      track.scrollTo({ left: targetLeft, behavior: 'smooth' });
+    }
+
+    // Scroll by N steps
+    function scrollByDirection(direction) {
+      const step = getStep();
+      track.scrollBy({ left: direction * step, behavior: 'smooth' });
+    }
+
+    // Arrow button event listeners
+    if (prevBtn) prevBtn.addEventListener('click', () => scrollByDirection(-1));
+    if (nextBtn) nextBtn.addEventListener('click', () => scrollByDirection(1));
+    if (prevBtnMobile) prevBtnMobile.addEventListener('click', () => scrollByDirection(-1));
+    if (nextBtnMobile) nextBtnMobile.addEventListener('click', () => scrollByDirection(1));
+
+    // Update active dot, counter, and arrow states on scroll
+    function updateControls() {
+      const step = getStep();
+      const scrollLeft = track.scrollLeft;
+      const maxScroll = track.scrollWidth - track.clientWidth;
+
+      let activeIndex = Math.round(scrollLeft / step);
+      if (maxScroll > 0 && scrollLeft >= maxScroll - 15) {
+        activeIndex = totalCards - 1;
+      }
+      activeIndex = Math.max(0, Math.min(activeIndex, totalCards - 1));
+
+      // Update dots
+      if (dotsContainer) {
+        const dots = dotsContainer.querySelectorAll('.carousel-dot');
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle('is-active', idx === activeIndex);
+        });
+      }
+
+      // Update counter (e.g. "3 of 9")
+      if (counterEl) {
+        counterEl.textContent = `${activeIndex + 1} of ${totalCards}`;
+      }
+
+      // Update disabled states
+      const atStart = scrollLeft <= 8;
+      const atEnd = scrollLeft >= maxScroll - 8;
+
+      if (prevBtn) prevBtn.disabled = atStart;
+      if (prevBtnMobile) prevBtnMobile.disabled = atStart;
+      if (nextBtn) nextBtn.disabled = atEnd;
+      if (nextBtnMobile) nextBtnMobile.disabled = atEnd;
+    }
+
+    // Debounced scroll listener
+    let scrollRaf = null;
+    track.addEventListener('scroll', () => {
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = requestAnimationFrame(updateControls);
+    }, { passive: true });
+
+    // Desktop Mouse Drag to Scroll
+    let isMouseDown = false;
+    let startX = 0;
+    let scrollLeftStart = 0;
+
+    track.addEventListener('mousedown', (e) => {
+      if (e.target.closest('a, button, input')) return;
+      isMouseDown = true;
+      startX = e.pageX - track.offsetLeft;
+      scrollLeftStart = track.scrollLeft;
+      track.style.cursor = 'grabbing';
+      track.style.userSelect = 'none';
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (!isMouseDown) return;
+      isMouseDown = false;
+      track.style.cursor = '';
+      track.style.userSelect = '';
+    });
+
+    track.addEventListener('mousemove', (e) => {
+      if (!isMouseDown) return;
+      e.preventDefault();
+      const x = e.pageX - track.offsetLeft;
+      const walk = (x - startX) * 1.3;
+      track.scrollLeft = scrollLeftStart - walk;
+    });
+
+    // Keyboard navigation (ArrowLeft / ArrowRight) when focused
+    track.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        scrollByDirection(-1);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        scrollByDirection(1);
+      }
+    });
+
+    // Initial sync
+    setTimeout(updateControls, 100);
+    window.addEventListener('resize', updateControls);
+  }
+
+  /* ==========================================================================
      8. Before / After Comparison Slider (Pure JS, Draggable, Keyboard Accessible)
      ========================================================================== */
   function initBeforeAfterSlider() {
@@ -2350,6 +2502,7 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbw_wmmuPmkMQudFS8A2aw8v
     initBookingForm();
     initTreatmentToForm();
     initDoctorCardClick();
+    initDoctorsSlider();
     initBeforeAfterSlider();
     initTestimonialCarousel();
     initFaqAccordion();
